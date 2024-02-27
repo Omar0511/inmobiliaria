@@ -30,4 +30,7 @@
 1. Al iniciar el proyecto, mediante la consola ejecutaremos el comando:
     - _**npm i**_
         - Sirve para instalar las dependencias.
+1. Ejecutamos:
+    - _**gulp**_
+        - Se creará la carpeta de: _**build**_.
 1.
