@@ -18,7 +18,7 @@
 
 ### Descripción
 
-- Mi primer proyecto creado con PHP y MySQL agregando HTML5 y SASS.
+- Mi primer proyecto creado con PHP y MySQL agregando HTML5, SASS y JavaScript.
 - Proyecto para mostrar bienes raíces, aplicando buenas prácticas y optimizando la carga de imágenes y/o archivos.
 - Se crea un CRUD para llevar acabo las acciones necesarias para: Crear, Actualizar, Listar y Eliminar las propiedades y los vendedores.
 
