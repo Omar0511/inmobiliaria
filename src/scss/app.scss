@@ -3,3 +3,8 @@
 @import 'base/mixins';
 @import 'base/globales';
 @import 'base/utilidades';
+
+// UI, se importan los archivos que creamos en la carpeta de layout
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/navegacion';
