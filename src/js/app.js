@@ -6,6 +6,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function darkMode() {
+    const prefiereDarMode = window.matchMedia('(prefers-color-scheme: dark');
+
+    if (prefiereDarMode.matches) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+
+    prefiereDarMode.addEventListener('change', function() {
+        if (prefiereDarMode.matches) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    });
+
     const botonDarkMode = document.querySelector('.dark-mode-boton');
 
     botonDarkMode.addEventListener('click', function() {
