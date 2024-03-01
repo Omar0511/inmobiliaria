@@ -57,13 +57,13 @@
     //display: none;
     visibility: hidden;
     opacity: 0;
-    transition:  visibility 0.3s ease-in-out, opacity 0.5s linear  ;
-    -webkit-transition:  visibility 0.3s ease-in-out, opacity 0.5s linear  ;
-    -moz-transition:  visibility 0.3s ease-in-out, opacity 0.5s linear  ;
-    -ms-transition:  visibility 0.3s ease-in-out, opacity 0.5s linear  ;
-    -o-transition:  visibility 0.3s ease-in-out, opacity 0.5s linear  ;
+    transition:  visibility 0.3s ease-in-out, opacity 0.5s linear, height 0.5s linear  ;
+    -webkit-transition:  visibility 0.3s ease-in-out, opacity 0.5s linear, height 0.5s linear  ;
+    -moz-transition:  visibility 0.3s ease-in-out, opacity 0.5s linear, height 0.5s linear  ;
+    -ms-transition:  visibility 0.3s ease-in-out, opacity 0.5s linear, height 0.5s linear  ;
+    -o-transition:  visibility 0.3s ease-in-out, opacity 0.5s linear, height 0.5s linear  ;
     height: 0;
-
+    
     @include tablet {
         display: flex;
         align-items: center;
@@ -111,4 +111,5 @@
     // Los display no se pueden animar, por ello se cambio a visibility
     visibility: visible;
     opacity: 1;
+    height: auto;
 }
