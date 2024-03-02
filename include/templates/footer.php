@@ -8,7 +8,11 @@
             </nav>
         </div>
 
-        <p class="copyright">Todos los derechos reservados 2024 &copy;</p>
+        <?php
+            $fecha = Date('Y');
+        ?>
+
+        <p class="copyright">Todos los derechos reservados <?php echo $fecha; ?> &copy;</p>
     </footer>
 
     <script src="build/js/bundle.min.js"></script>
