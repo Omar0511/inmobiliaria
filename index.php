@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienes Raíces</title>
-    <link rel="stylesheet" href="build/css/app.css">
-</head>
-<body>
-    <header class="header inicio">
-        <div class="contenedor contenido-header">
-            <div class="barra">
-                <a href="/">
-                    <img src="build/img/logo.svg" alt="Logotipo Bienes Raíces">
-                </a>
+<?php
+    $inicio = true;
 
-                <div class="mobile-menu">
-                    <img src="build/img/barras.svg" alt="Icono Menú Hamburguesa">
-                </div>
-
-                <div class="derecha">
-                    <img class="dark-mode-boton" src="build/img//dark-mode.svg" alt="Icono Dark Mode">
-
-                    <nav class="navegacion">
-                        <a href="nosotros.html">Nostros</a>
-                        <a href="anuncios.html">Anuncios</a>
-                        <a href="blog.html">Blog</a>
-                        <a href="contacto.html">Contacto</a>
-                    </nav>
-                </div>
-            </div>
-
-            <h1>Venta de Casas y Departamentos Exclusivos de Lujo</h1>
-        </div>
-    </header>
-
+    include './include/templates/header.php';
+?>
     <main class="contenedor seccion">
         <h1>Más Sobre Nosotros</h1>
 
