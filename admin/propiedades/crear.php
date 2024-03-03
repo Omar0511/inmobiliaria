@@ -1,4 +1,9 @@
 <?php
+    // Base de Datos
+    require '../../include/config/database.php';
+    // Mandamos llamar la función que viene de database.php
+    $db = conectarDB();
+
     require '../../include/funciones.php';
 
     incluirTemplates('header');
@@ -51,6 +56,8 @@
                     <option value="2">Mimi</option>
                 </select>
             </fieldset>
+
+            <input type="submit" value="Crear Propiedad" class="boton boton-verde-inline-block">
         </form>
     </main>
 
