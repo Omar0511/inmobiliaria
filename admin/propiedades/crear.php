@@ -11,7 +11,25 @@
                 var_dump($_POST);
             echo '</pre>';
         */
-        
+
+        // Asignamos a las variables el valor enviado por POST
+        $titulo = $_POST['titulo'];
+        $precio = $_POST['precio'];
+        $descripcion = $_POST['descripcion'];
+        $habitaciones = $_POST['habitaciones'];
+        $wc = $_POST['wc'];
+        $estacionamiento = $_POST['estacionamiento'];
+        $vendedor_id = $_POST['vendedor_id'];
+
+        // INSERT a la BD
+        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedor_id) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$vendedor_id')";
+
+        // Probar query: echo $query;
+        $resultado = mysqli_query($db, $query);
+
+        if ($resultado) {
+            echo "Insertado con éxito";
+        }
     }
 
     require '../../include/funciones.php';
@@ -59,8 +77,8 @@
             <fieldset>
                 <legend>Vendedor</legend>
 
-                <label for="vendedor">Vendedor</label>
-                <select name="" id="">
+                <label for="vendedor_id">Vendedor</label>
+                <select id="vendedor_id" name="vendedor_id">
                     <option value="" disabled selected>-- Seleccione una opción --</option>
                     <option value="1">Omar</option>
                     <option value="2">Mimi</option>
