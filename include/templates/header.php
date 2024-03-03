@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienes Raíces</title>
-    <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" href="/build/css/app.css">
 </head>
 <body>
     <!--
@@ -19,15 +19,15 @@
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="/index.php">
-                    <img src="build/img/logo.svg" alt="Logotipo Bienes Raíces">
+                    <img src="/build/img/logo.svg" alt="Logotipo Bienes Raíces">
                 </a>
 
                 <div class="mobile-menu">
-                    <img src="build/img/barras.svg" alt="Icono Menú Hamburguesa">
+                    <img src="/build/img/barras.svg" alt="Icono Menú Hamburguesa">
                 </div>
 
                 <div class="derecha">
-                    <img class="dark-mode-boton" src="build/img//dark-mode.svg" alt="Icono Dark Mode">
+                    <img class="dark-mode-boton" src="/build/img//dark-mode.svg" alt="Icono Dark Mode">
 
                     <nav class="navegacion">
                         <a href="nosotros.php">Nostros</a>

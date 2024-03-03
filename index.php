@@ -1,5 +1,4 @@
 <?php
-
     // REQUIRE: sirve para incluir FUNCIONES o código más complejo
     require 'include/funciones.php';
     
