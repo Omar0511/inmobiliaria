@@ -1,7 +1,13 @@
 <?php
-    $inicio = false;
-    
-    include './include/templates/header.php';
+    /*
+        $inicio = false;
+        
+        include './include/templates/header.php';
+    */
+
+    require 'include/funciones.php';
+
+    incluirTemplates('header');
 ?>
     <main class="contenedor seccion">
         <h2>Casas y Depas en Venta</h2>
@@ -208,5 +214,7 @@
     </main>
 
 <?php
-    include './include/templates/footer.php';
+    incluirTemplates('footer');
+    
+    //include './include/templates/footer.php';
 ?>

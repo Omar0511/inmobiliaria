@@ -1,8 +1,15 @@
 <?php
-    // Iniciamos la variable en false porque en los demás archivos no utilizamos esta variable, sino marca error
-    $inicio = false;
-    
-    include './include/templates/header.php';
+    /* 
+        Iniciamos la variable en false porque en los demás archivos no utilizamos esta variable, sino marca error
+        $inicio = false;
+        include './include/templates/header.php';
+
+        Se reemplaza por lo de abajo
+    */
+
+    require 'include/funciones.php';
+
+    incluirTemplates('header');
 ?>
 
     <main class="contenedor seccion">
@@ -64,5 +71,7 @@
     </section>
 
 <?php
-    include './include/templates/footer.php';
+    incluirTemplates('footer');
+
+    //include './include/templates/footer.php';
 ?>

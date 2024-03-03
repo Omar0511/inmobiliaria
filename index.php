@@ -1,7 +1,14 @@
 <?php
+
+    // REQUIRE: sirve para incluir FUNCIONES o código más complejo
+    require 'include/funciones.php';
+    
     $inicio = true;
 
-    include './include/templates/header.php';
+    incluirTemplates('header', $inicio);
+
+    // INCLUDE: sirve para incluir ARCHIVOS, Se cambio por el REQUIRE
+    // include './include/templates/header.php';
 ?>
     <main class="contenedor seccion">
         <h1>Más Sobre Nosotros</h1>
@@ -202,5 +209,7 @@
     </div>
 
 <?php
-    include './include/templates/footer.php';
+    //include './include/templates/footer.php'; Se cambia por el de abajo
+
+    incluirTemplates('footer');
 ?>
