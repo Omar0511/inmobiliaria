@@ -4,8 +4,18 @@
     // Mandamos llamar la función que viene de database.php
     $db = conectarDB();
 
-    require '../../include/funciones.php';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        /*
+            Mostrando lo que manda el FORM
+            echo '<pre>';
+                var_dump($_POST);
+            echo '</pre>';
+        */
+        
+    }
 
+    require '../../include/funciones.php';
+    // Mandamos a llamar la función de incluirTemplates()
     incluirTemplates('header');
 ?>
 
@@ -14,7 +24,7 @@
 
         <a href="/admin" class="boton boton-verde-inline-block">Volver</a>
 
-        <form action="" class="formulario">
+        <form action="" class="formulario" method="POST">
             <fieldset>
                 <legend>Información General</legend>
 
