@@ -7,6 +7,14 @@
     // Arreglo con mensaje de errores
     $errores = [];
 
+    $titulo = '';
+    $precio = '';
+    $descripcion = '';
+    $habitaciones = '';
+    $wc = '';
+    $estacionamiento = '';
+    $vendedor_id = '';
+
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /*
@@ -92,31 +100,31 @@
                 <legend>Información General</legend>
 
                 <label for="titulo">Título</label>
-                <input type="text" name="titulo" id="titulo" placeholder="Ingresa el Título">
+                <input type="text" name="titulo" id="titulo" placeholder="Ingresa el Título" value="<?php echo $titulo; ?>">
 
                 <label for="precio">Precio</label>
-                <input type="number" name="precio" id="precio" placeholder="Ingresa el precio">
+                <input type="number" name="precio" id="precio" placeholder="Ingresa el precio" value="<?php echo $precio; ?>">
 
                 <label for="imagen">Imagen</label>
                 <!-- accept: indica que aceptará, en este caso imagénes con formato jpeg, png -->
-                <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png">
+                <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png" >
 
                 <label for="descripcion">Descripción</label>
-                <textarea name="descripcion" id="descripcion"></textarea>
+                <textarea name="descripcion" id="descripcion"> <?php echo $descripcion; ?> </textarea>
             </fieldset>
 
             <fieldset>
                 <legend>Información Propiedad</legend>
 
                 <label for="habitaciones">Habitaciones</label>
-                <input type="number" name="habitaciones" id="habitaciones" placeholder="Ej: 3" min="1" max="9">
+                <input type="number" name="habitaciones" id="habitaciones" placeholder="Ej: 3" min="1" max="9" value="<?php echo $habitaciones; ?>">
 
                 <label for="wc">Wc</label>
-                <input type="number" name="wc" id="precio" placeholder="Ej: 3" min="1" max="9">
+                <input type="number" name="wc" id="precio" placeholder="Ej: 3" min="1" max="9" value="<?php echo $wc; ?>">
 
                 <label for="estacionamiento">Estacionamiento</label>
                 <!-- accept: indica que aceptará, en este caso imagénes con formato jpeg, png -->
-                <input type="number" name="estacionamiento" id="estacionamiento" placeholder="Ej: 3" min="1" max="9">
+                <input type="number" name="estacionamiento" id="estacionamiento" placeholder="Ej: 3" min="1" max="9" value="<?php echo $estacionamiento; ?>">
             </fieldset>
 
             <fieldset>
