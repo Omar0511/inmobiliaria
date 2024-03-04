@@ -4,6 +4,10 @@
     // Mandamos llamar la función que viene de database.php
     $db = conectarDB();
 
+    // Arreglo con mensaje de errores
+    $errores = [];
+
+    // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /*
             Mostrando lo que manda el FORM
@@ -21,15 +25,48 @@
         $estacionamiento = $_POST['estacionamiento'];
         $vendedor_id = $_POST['vendedor_id'];
 
-        // INSERT a la BD
-        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedor_id) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$vendedor_id')";
-
-        // Probar query: echo $query;
-        $resultado = mysqli_query($db, $query);
-
-        if ($resultado) {
-            echo "Insertado con éxito";
+        if (!$titulo) {
+            $errores[] = "El Título es obligatorio";
         }
+
+        if (!$precio) {
+            $errores[] = "El Precio es obligatorio";
+        }
+
+        if ( strlen( $descripcion) < 50 ) {
+            $errores[] = "La Descripción debe tener minímo 50 carácteres...";
+        }
+
+        if (!$habitaciones) {
+            $errores[] = "Las Habitaciones son obligatorias";
+        }
+
+        if (!$wc) {
+            $errores[] = "El WC es obligatorio";
+        }
+
+        if (!$estacionamiento) {
+            $errores[] = "El Estacionamiento es obligatorio";
+        }
+
+        if (!$vendedor_id) {
+            $errores[] = "El Vendedor es obligatorio";
+        }
+
+        // Revisar que el array de $errores este vacío
+        if ( empty($errores) ) {
+            // INSERT a la BD
+            $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedor_id) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$vendedor_id')";
+
+            // Probar query: echo $query;
+            $resultado = mysqli_query($db, $query);
+
+            if ($resultado) {
+                echo "Insertado con éxito";
+            }
+        }
+
+
     }
 
     require '../../include/funciones.php';
@@ -41,6 +78,14 @@
         <h1>Crear</h1>
 
         <a href="/admin" class="boton boton-verde-inline-block">Volver</a>
+
+        <?php
+            foreach($errores as $e) {
+        ?>
+            <div class="alerta error"> <?php echo $e; ?> </div>
+        <?php
+            }
+        ?>
 
         <form action="" class="formulario" method="POST">
             <fieldset>
