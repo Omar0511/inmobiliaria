@@ -4,6 +4,10 @@
     // Mandamos llamar la función que viene de database.php
     $db = conectarDB();
 
+    // Consultar vendedores
+    $query = "SELECT * FROM vendedores";
+    $resultado = mysqli_query($db, $query);
+
     // Arreglo con mensaje de errores
     $errores = [];
 
@@ -14,6 +18,7 @@
     $wc = '';
     $estacionamiento = '';
     $vendedor_id = '';
+    $creado = date('Y/m/d');
 
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -64,16 +69,20 @@
         // Revisar que el array de $errores este vacío
         if ( empty($errores) ) {
             // INSERT a la BD
-            $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedor_id) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$vendedor_id')";
+            $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, vendedor_id) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedor_id')";
 
             // Probar query: echo $query;
             $resultado = mysqli_query($db, $query);
 
             if ($resultado) {
-                echo "Insertado con éxito";
+                /* 
+                    echo "Insertado con éxito";
+                    Si el formulario se cumple, lo redireccionamos para que no se quede en 
+                    el FORM, pensando que la información no se envío
+                */
+                header('Location: /admin');
             }
         }
-
 
     }
 
@@ -110,7 +119,7 @@
                 <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png" >
 
                 <label for="descripcion">Descripción</label>
-                <textarea name="descripcion" id="descripcion"> <?php echo $descripcion; ?> </textarea>
+                <textarea name="descripcion" id="descripcion"><?php echo $descripcion; ?></textarea>
             </fieldset>
 
             <fieldset>
@@ -133,8 +142,18 @@
                 <label for="vendedor_id">Vendedor</label>
                 <select id="vendedor_id" name="vendedor_id">
                     <option value="" disabled selected>-- Seleccione una opción --</option>
-                    <option value="1">Omar</option>
-                    <option value="2">Mimi</option>
+                    <?php 
+                        while($row = mysqli_fetch_assoc($resultado) ): 
+                    ?>
+                            <option 
+                                <?php echo $vendedor_id === $row['id'] ? 'selected' : ''; ?>  
+                                value="<?php echo $row['id']; ?>"
+                            >
+                                <?php echo $row['nombre'] . ' ' . $row['apellido']; ?>
+                            </option>
+                    <?php 
+                        endwhile; 
+                    ?>
                 </select>
             </fieldset>
 
