@@ -18,7 +18,6 @@
     $wc = '';
     $estacionamiento = '';
     $vendedor_id = '';
-    $creado = date('Y/m/d');
 
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -45,7 +44,15 @@
         $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones'] );
         $wc = mysqli_real_escape_string($db, $_POST['wc'] );
         $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento'] );
-        $vendedor_id = mysqli_real_escape_string($db, $_POST['vendedor_id'] );
+        // $vendedor_id = mysqli_real_escape_string($db, $_POST['vendedor_id'] );
+        
+        // Asignar vendedor_id si está definido en $_POST, de lo contrario, asignar un valor predeterminado (por ejemplo, '')
+        $vendedor_id = isset($_POST['vendedor_id']) ? mysqli_real_escape_string($db, $_POST['vendedor_id']) : '';
+
+        $creado = date('Y/m/d');
+
+        // Asignar FILES hacia una variable
+        $imagen = $_FILES['imagen'];
 
         if (!$titulo) {
             $errores[] = "El Título es obligatorio";
@@ -73,6 +80,17 @@
 
         if (!$vendedor_id) {
             $errores[] = "El Vendedor es obligatorio";
+        }
+
+        if (!$imagen['name'] || $imagen['error']) {
+            $errores[] = 'La Imagen es obligatoria';
+        }
+
+        // Convertir de Bytes a KyloBytes, validar por tamaño (100 kb máximo)
+        $medida = 1000 * 100;
+
+        if ($imagen['size'] > $medida) {
+            $errores[] = 'La Imagen es muy pesada';
         }
 
         // Revisar que el array de $errores este vacío
@@ -113,7 +131,8 @@
             }
         ?>
 
-        <form action="" class="formulario" method="POST">
+        <!-- enctype="multipart/form-data": se agrega si queremos subir archivos y/o imagénes -->
+        <form action="" class="formulario" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <legend>Información General</legend>
 
@@ -158,7 +177,7 @@
                                 <?php echo $vendedor_id === $row['id'] ? 'selected' : ''; ?>  
                                 value="<?php echo $row['id']; ?>"
                             >
-                                <?php echo $row['nombre'] . ' ' . $row['apellido']; ?>
+                                <?php echo $row['nombre'] . " " . $row['apellido']; ?>
                             </option>
                     <?php 
                         endwhile; 
