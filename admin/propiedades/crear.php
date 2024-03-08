@@ -87,7 +87,7 @@
         }
 
         // Convertir de Bytes a KyloBytes, validar por tamaño (100 kb máximo)
-        $medida = 1000 * 100;
+        $medida = 1000 * 1000;
 
         if ($imagen['size'] > $medida) {
             $errores[] = 'La Imagen es muy pesada';
@@ -95,6 +95,18 @@
 
         // Revisar que el array de $errores este vacío
         if ( empty($errores) ) {
+            // SUBIDA DE ARCHIVOS
+            $carpetaImagenes = '../../imagenes';
+
+            // Validar si una carpeta existe: is_dir();
+            if ( !is_dir($carpetaImagenes) ) {
+                // Crear carpeta
+                mkdir($carpetaImagenes);
+            }
+
+            // Subir la imagen
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . "/archivo.jpg" );
+
             // INSERT a la BD
             $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, vendedor_id) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedor_id')";
 
