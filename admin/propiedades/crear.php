@@ -122,7 +122,7 @@
                     Si el formulario se cumple, lo redireccionamos para que no se quede en 
                     el FORM, pensando que la información no se envío
                 */
-                header('Location: /admin');
+                header('Location: /admin?resultado=1');
             }
         }
 
