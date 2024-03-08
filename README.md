@@ -34,3 +34,25 @@
     - _**gulp**_
         - Se creará la carpeta de: _**build**_.
 1.
+
+#### Subida de archivos
+
+1. Creamos un archivo:
+    - **info.php**
+1. Dentro del archivo, ejecutamos la función:
+    - **_phpinfo();_**
+1. Buscamos la línea:
+    - Loaded Configuration File
+        - (Debe estar php.ini)
+1. Copiamos la ruta, lo pegamos en el buscador y vamos abrir el archivo en VSC
+1. Una vez abierto el archivo, buscaremos:
+    - **log_errors = On**
+        - Nota: debe estar en On, si esta en Off, debemos cambiarlo
+1. Seguimos con:
+    - **upload_max_filesize = 40M**
+    - **max_file_uploads = 20**
+    - **post_max_size = 40M**
+    - **max_execution_time = 300**
+    - **memory_limit = 512M**
+1. Después de haber realizado estas configuraciones, debemos reiniciar el servidor, esto lo podemos realizar desde **Servicios**
+1. Nota: el archivo: **info.php**, debemos eliminarlo
