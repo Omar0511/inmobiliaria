@@ -24,8 +24,12 @@
             // intval() = convierte un STRING a ENTERO
             if ( intval( $resultado ) === 1) {            
         ?>
-            <p class="alerta exito">Anuncio creado correctamente</p>
+                <p class="alerta exito">Anuncio creado correctamente</p>
         <?php 
+            } else if ( intval( $resultado ) === 2) {
+        ?>
+                <p class="alerta exito">Anuncio actualizado correctamente</p>
+        <?php
             }
         ?>
 

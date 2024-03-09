@@ -42,15 +42,6 @@
             echo '</pre>';
         */
 
-        // Asignamos a las variables el valor enviado por POST
-        // $titulo = $_POST['titulo'];
-        // $precio = $_POST['precio'];
-        // $descripcion = $_POST['descripcion'];
-        // $habitaciones = $_POST['habitaciones'];
-        // $wc = $_POST['wc'];
-        // $estacionamiento = $_POST['estacionamiento'];
-        // $vendedor_id = $_POST['vendedor_id'];
-
         // Sanitizando y/o Evitando INYECTION SQL
         $titulo = mysqli_real_escape_string($db, $_POST['titulo'] );
         $precio = mysqli_real_escape_string($db, $_POST['precio'] );
@@ -96,10 +87,6 @@
             $errores[] = "El Vendedor es obligatorio";
         }
 
-        if (!$imagen['name'] || $imagen['error']) {
-            $errores[] = 'La Imagen es obligatoria';
-        }
-
         // Convertir de Bytes a KyloBytes, validar por tamaño (100 kb máximo)
         $medida = 1000 * 1000;
 
@@ -125,18 +112,14 @@
             move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen );
 
             // INSERT a la BD
-            $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedor_id) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedor_id')";
+            $query = "UPDATE propiedades SET titulo = '${titulo}', precio = '${precio}', imagen = '${nombreImagen}', descripcion = '${descripcion}', habitaciones = ${habitaciones}, wc = ${wc}, estacionamiento = ${estacionamiento}, vendedor_id = ${vendedor_id} WHERE id = ${id}
+            ";
 
             // Probar query: echo $query;
             $resultado = mysqli_query($db, $query);
 
             if ($resultado) {
-                /* 
-                    echo "Insertado con éxito";
-                    Si el formulario se cumple, lo redireccionamos para que no se quede en 
-                    el FORM, pensando que la información no se envío
-                */
-                header('Location: /admin?resultado=1');
+                header('Location: /admin?resultado=2');
             }
         }
 
@@ -161,7 +144,7 @@
         ?>
 
         <!-- enctype="multipart/form-data": se agrega si queremos subir archivos y/o imagénes -->
-        <form action="" class="formulario" method="POST" enctype="multipart/form-data">
+        <form class="formulario" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <legend>Información General</legend>
 
