@@ -12,6 +12,11 @@
     // Mandamos llamar la función que viene de database.php
     $db = conectarDB();
 
+    // Consultar Porpiedades por ID
+    $consulta = "SELECT * FROM propiedades WHERE id = ${id}";
+    $resultado = mysqli_query($db, $consulta);
+    $propiedad = mysqli_fetch_assoc($resultado);
+
     // Consultar vendedores
     $query = "SELECT * FROM vendedores";
     $resultado = mysqli_query($db, $query);
@@ -19,13 +24,14 @@
     // Arreglo con mensaje de errores
     $errores = [];
 
-    $titulo = '';
-    $precio = '';
-    $descripcion = '';
-    $habitaciones = '';
-    $wc = '';
-    $estacionamiento = '';
-    $vendedor_id = '';
+    $titulo = $propiedad['titulo'];
+    $precio = $propiedad['precio'];
+    $descripcion = $propiedad['descripcion'];
+    $habitaciones = $propiedad['habitaciones'];
+    $wc = $propiedad['wc'];
+    $estacionamiento = $propiedad['estacionamiento'];
+    $vendedor_id = $propiedad['vendedor_id'];
+    $imagenPropiedad = $propiedad['imagen'];
 
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -168,6 +174,8 @@
                 <label for="imagen">Imagen</label>
                 <!-- accept: indica que aceptará, en este caso imagénes con formato jpeg, png -->
                 <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png" >
+                <!-- Las imagénes no es buena opción mostrarlas al ACTUALIZAR, se recomienda solo mostrarla -->
+                <img src="/imagenes/<?php echo $propiedad['imagen'];?>" alt="Imagen actual">
 
                 <label for="descripcion">Descripción</label>
                 <textarea name="descripcion" id="descripcion"><?php echo $descripcion; ?></textarea>
