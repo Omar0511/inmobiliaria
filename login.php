@@ -19,11 +19,22 @@
 
         if ( empty($errores) ) {
             // Revisar si el usuario existe
-            $query = "SELECT * FROM usuarios WHERE email = '${email}";
+            $query = "SELECT * FROM usuarios WHERE email = '${email}' ";
             $resultado = mysqli_query($db, $query);
 
             if ($resultado->num_rows) {
                 // Revisar si el Password es correcto
+                $usuario = mysqli_fetch_assoc($resultado);
+
+                // Verificar si el password es correcto
+                $auth = password_verify($password, $usuario['password']);
+
+                if($auth) {
+                    header('Location: /admin');
+                } else {
+                    $errores[] = "El Password es incorrecto";
+                }
+
             } else {
                 $errores[] = "El Usuario NO existe";
             }
@@ -52,7 +63,7 @@
                 <legend>Email y Password</legend>
 
                 <label for="email">E-mail</label>
-                <input type="mail" name="email" id="email" placeholder="Ingresa tu E-mail">
+                <input type="mail" name="email" id="email" placeholder="Ingresa tu E-mail" value="<?php echo $email; ?>">
 
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Ingresa tu Password">
