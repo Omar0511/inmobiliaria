@@ -105,11 +105,21 @@
                 mkdir($carpetaImagenes);
             }
 
-            // Generar nombre único de img
-            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+            $nombreImagen = '';
 
-            // Subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen );
+            // unlink() = Elimina Archivos
+            if ( $imagen['name'] ) {
+                unlink($carpetaImagenes . $propiedad['imagen']);
+
+                // Generar nombre único de img
+                $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+                // Subir la imagen
+                move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen );
+
+            } else {
+                $nombreImagen = $propiedad['imagen'];
+            }
 
             // INSERT a la BD
             $query = "UPDATE propiedades SET titulo = '${titulo}', precio = '${precio}', imagen = '${nombreImagen}', descripcion = '${descripcion}', habitaciones = ${habitaciones}, wc = ${wc}, estacionamiento = ${estacionamiento}, vendedor_id = ${vendedor_id} WHERE id = ${id}
