@@ -1,4 +1,24 @@
 <?php
+    require 'include/config/database.php';
+    $db = conectarDB();
+
+    $errores = [];
+
+    // Autenticar Usuario
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $email = mysqli_real_escape_string($db, filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL));
+        $password = mysqli_real_escape_string($db, $_POST['password']);
+
+        if (!$email) {
+            $errores[] = "El E-mail es obligatorio o no es válido";
+        }
+
+        if (!$password) {
+            $errores[] = "El Password es obligatorio";
+        }
+    }
+
+
     require 'include/funciones.php';
 
     incluirTemplates('header');
@@ -7,7 +27,15 @@
     <main class="contenedor seccion contenido-centrado">
         <h1>Iniciar Sesión</h1>
 
-        <form action="" class="formulario">
+        <?php 
+            foreach($errores as $e) { 
+        ?>
+                <div class="alerta error"> <?php echo $e; ?> </div>
+        <?php 
+            } 
+        ?>
+
+        <form class="formulario" method="POST">
             <fieldset>
                 <legend>Email y Password</legend>
 
