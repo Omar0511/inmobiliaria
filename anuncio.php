@@ -1,4 +1,23 @@
 <?php
+    $id = $_GET['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if (!$id) {
+        header('Location: /');
+    }
+
+    require 'include/config/database.php';
+    $db = conectarDB();
+
+    $query = "SELECT * FROM propiedades WHERE id = ${id}";
+    $resultado = mysqli_query($db, $query);
+
+    if (!$resultado->num_rows) {
+        header('Location: /');
+    }
+
+    $propiedad = mysqli_fetch_assoc($resultado);
+
     /*
         $inicio = false;
         
@@ -11,47 +30,36 @@
 ?>
 
     <main class="contenedor seccion contenido-centrado">
-        <h1>Casan en Venta frente al bosque</h1>
+        <h1> <?php echo $propiedad['titulo']; ?> </h1>
 
-        <picture>
-            <source srcset="build/img/destacada.webp" type="image/webp">
-            <source srcset="build/img/destacada.jpg" type="image/jpeg">
-            <img src="build/img/destacada.jpg" alt="Imagen de la propiedad">
-        </picture>
+        <img src="./imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de la propiedad">
 
         <div class="resumen-propiedad">
-            <p class="precio">$3,000,000</p>
+            <p class="precio">$<?php echo $propiedad['precio']; ?></p>
             <ul class="iconos-caracteristicas">
                 <li>
                     <img class="icono" src="build/img/icono_wc.svg" alt="Icono WC">
-                    <p>3</p>
+                    <p> <?php echo $propiedad['wc']; ?> </p>
                 </li>
 
                 <li>
                     <img class="icono" src="build/img/icono_estacionamiento.svg" alt="Icono Estacionamiento">
-                    <p>3</p>
+                    <p> <?php echo $propiedad['estacionamiento']; ?> </p>
                 </li>
 
                 <li>
                     <img class="icono" src="build/img/icono_dormitorio.svg" alt="Icono Dormitorio">
-                    <p>4</p>
+                    <p> <?php echo $propiedad['habitaciones']; ?> </p>
                 </li>
             </ul>
 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus quaerat, in rem tempora maiores iure veritatis vero eius dolorem? Vero dignissimos optio eum alias numquam odio distinctio architecto porro explicabo.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus quaerat, in rem tempora maiores iure veritatis vero eius dolorem? Vero dignissimos optio eum alias numquam odio distinctio architecto porro explicabo.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus quaerat, in rem tempora maiores iure veritatis vero eius dolorem? Vero dignissimos optio eum alias numquam odio distinctio architecto porro explicabo.
-            </p>
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus quaerat, in rem tempora maiores iure veritatis vero eius dolorem? Vero dignissimos optio eum alias numquam odio distinctio architecto porro explicabo.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus quaerat, in rem tempora maiores iure veritatis vero eius dolorem? Vero dignissimos optio eum alias numquam odio distinctio architecto porro explicabo.
-            </p>
+            <p> <?php echo $propiedad['descripcion']; ?> </p>
         </div>
     </main>
 
 <?php
+    mysqli_close($db);
+
     incluirTemplates('footer');
     
     //include './include/templates/footer.php';
