@@ -48,7 +48,6 @@
         }
     }
 
-
     require 'include/funciones.php';
 
     incluirTemplates('header');
@@ -70,7 +69,7 @@
                 <legend>Email y Password</legend>
 
                 <label for="email">E-mail</label>
-                <input type="mail" name="email" id="email" placeholder="Ingresa tu E-mail" value="<?php echo $email; ?>">
+                <input type="mail" name="email" id="email" placeholder="Ingresa tu E-mail">
 
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Ingresa tu Password">

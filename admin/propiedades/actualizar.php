@@ -1,4 +1,19 @@
 <?php
+    // session_start();
+
+    // $auth = $_SESSION['login'];
+
+    // if (!$auth) {
+    //     header('Location: /login.php');
+    // }
+
+    require '../../include/funciones.php';
+    $auth = estaAutenticado();
+
+    if (!$auth) {
+        header('Location: /login.php');
+    }
+    
     // Validamos que el ID sea un ENTERO
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -135,7 +150,6 @@
 
     }
 
-    require '../../include/funciones.php';
     // Mandamos a llamar la función de incluirTemplates()
     incluirTemplates('header');
 ?>

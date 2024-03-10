@@ -1,4 +1,19 @@
 <?php
+    // session_start();
+
+    // $auth = $_SESSION['login'];
+
+    // if (!$auth) {
+    //     header('Location: /login.php');
+    // }
+
+    require '../../include/funciones.php';
+    $auth = estaAutenticado();
+
+    if (!$auth) {
+        header('Location: /login.php');
+    }
+
     // Base de Datos
     require '../../include/config/database.php';
     // Mandamos llamar la función que viene de database.php
@@ -128,7 +143,6 @@
 
     }
 
-    require '../../include/funciones.php';
     // Mandamos a llamar la función de incluirTemplates()
     incluirTemplates('header');
 ?>

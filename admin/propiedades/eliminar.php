@@ -1,5 +1,19 @@
 <?php
+    // session_start();
+
+    // $auth = $_SESSION['login'];
+
+    // if (!$auth) {
+    //     header('Location: /login.php');
+    // }
+    
     require '../../include/funciones.php';
+    $auth = estaAutenticado();
+
+    if (!$auth) {
+        header('Location: /login.php');
+    }
+
 
     incluirTemplates('header');
 ?>
