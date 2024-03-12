@@ -79,3 +79,22 @@
         - **_composer update_**
     - Nos creará:
         - **_composer.lock_**
+
+## Active Record
+
+- Es un patrón de Arquitectura que se utiliza para aplicaciones que almacenan datos en BDS y CRUD.
+
+### ¿Cómo funciona?
+
+1. Cada tabla en la bd tiene una clase que contiene los mismos atributos que columnas de la BD.
+1. Estos atributos se "mapean" utilizando la clase como el puente para tener un objetos con esos datos.
+1. Es decir, se crea un objeto cen memoria que es igual a lo que tenemos en la BD.
+1. Active Record mantiene y lee los cambios que se van haciendo en estos atributos.
+1. Ideal para trabajar con CRUD.
+1. Se crean algunos métodos:
+    - $propiedad->guardar();
+    - $propiedad->actualizar();
+    - $propiedad->eliminar();
+    - $propiedad->find();
+    - $propiedad->all();
+

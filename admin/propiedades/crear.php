@@ -1,21 +1,16 @@
 <?php
-    // session_start();
 
-    // $auth = $_SESSION['login'];
+    require '../../include/app.php';
 
-    // if (!$auth) {
-    //     header('Location: /login.php');
-    // }
+    use App\Propiedad;
+    $propiedad = new Propiedad;
 
-    require '../../include/funciones.php';
     $auth = estaAutenticado();
 
     if (!$auth) {
         header('Location: /login.php');
     }
 
-    // Base de Datos
-    require '../../include/config/database.php';
     // Mandamos llamar la función que viene de database.php
     $db = conectarDB();
 
