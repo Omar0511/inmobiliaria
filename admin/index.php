@@ -1,21 +1,9 @@
 <?php
-    // session_start();
 
-    // $auth = $_SESSION['login'];
+    require '../include/app.php';
+    
+    estaAutenticado();
 
-    // if (!$auth) {
-    //     header('Location: /login.php');
-    // }
-
-    require '../include/funciones.php';
-    $auth = estaAutenticado();
-
-    if (!$auth) {
-        header('Location: /login.php');
-    }
-
-    // Importar la conexión
-    require '../include/config/database.php';
     $db = conectarDB();
 
     // Escribir Query

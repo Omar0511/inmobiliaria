@@ -5,11 +5,7 @@
     use App\Propiedad;
     $propiedad = new Propiedad;
 
-    $auth = estaAutenticado();
-
-    if (!$auth) {
-        header('Location: /login.php');
-    }
+    estaAutenticado();
 
     // Mandamos llamar la función que viene de database.php
     $db = conectarDB();
