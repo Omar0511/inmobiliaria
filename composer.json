@@ -1,0 +1,17 @@
+{
+    "name": "omar/inmobiliaria",
+    "description": "Proyecto Inmobiliaria con POO",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Omar\\Inmobiliaria\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Omar Garcia",
+            "email": "za19012225@zapopan.tecmm.edu.mx"
+        }
+    ],
+    "require": {}
+}
