@@ -1,11 +1,5 @@
 <?php
-    /*
-        $inicio = false;
-        
-        include './include/templates/header.php';
-    */
-
-    require 'include/funciones.php';
+    require 'include/app.php';
 
     incluirTemplates('header');
 ?>

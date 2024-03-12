@@ -1,7 +1,8 @@
 <?php
 
     // Importar conexión
-    require 'include/config/database.php';
+    require 'include/app.php';
+    
     $db = conectarDB();
 
     $email = 'admin@inmobiliaria.com';

@@ -66,3 +66,16 @@
     - Nota: esta carpeta no es necesario subirla al repositorio ni al servidor, con el:
         - **_composer.json_**
         - podemos conocer las dependencias que necesitará el proyecto
+    - En el archivo:
+        - **_composer.json_**
+        ```
+            "autoload": {
+                "psr-4": {
+                    "App\\" : "./classes"
+                }
+            },
+        ```
+    - Después de haber configurado lo anterior, ingresamos:
+        - **_composer update_**
+    - Nos creará:
+        - **_composer.lock_**

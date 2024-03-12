@@ -1,5 +1,6 @@
 <?php
-    require 'include/config/database.php';
+    require 'include/app.php';
+        
     $db = conectarDB();
 
     $errores = [];
@@ -47,8 +48,6 @@
             }
         }
     }
-
-    require 'include/funciones.php';
 
     incluirTemplates('header');
 ?>

@@ -1,15 +1,7 @@
 <?php
 
-    require 'app.php';
-
-    /* 
-        ? Nota: los archivos de incluir, solo llevan la apertura de PHP, sin el cierre
-        
-        ! Esto es antes de inlucuir el app.php
-        function incluirTemplates($nombre) {
-            include "includes/templates/$nombre.php";
-        }
-    */
+    define('TEMPLATES_URL', __DIR__ . '/templates');
+    define('FUNCIONES_URL', __DIR__ . './funciones.php');
 
     function incluirTemplates(string $nombre, bool $inicio = false) {
         include TEMPLATES_URL . "/$nombre.php";

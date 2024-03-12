@@ -1,4 +1,6 @@
 <?php
+    require 'include/app.php';
+
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
@@ -6,7 +8,6 @@
         header('Location: /');
     }
 
-    require 'include/config/database.php';
     $db = conectarDB();
 
     $query = "SELECT * FROM propiedades WHERE id = ${id}";
@@ -17,14 +18,6 @@
     }
 
     $propiedad = mysqli_fetch_assoc($resultado);
-
-    /*
-        $inicio = false;
-        
-        include './include/templates/header.php';
-    */
-
-    require 'include/funciones.php';
 
     incluirTemplates('header');
 ?>
