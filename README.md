@@ -15,7 +15,15 @@
     -
 - Tipografía
     -
-
+- GitHub
+    - Ramas
+        - **_main_**
+            - Código Spaguetti
+        - **_2.0_**
+            - POO
+        - **_3.0_**
+            - MVC
+            
 ### Descripción
 
 - Mi primer proyecto creado con PHP y MySQL agregando HTML5, SASS y JavaScript.
@@ -33,7 +41,6 @@
 1. Ejecutamos:
     - _**gulp**_
         - Se creará la carpeta de: _**build**_.
-1.
 
 #### Subida de archivos
 
