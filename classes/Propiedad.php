@@ -61,8 +61,17 @@
             // Sanitizar los datos
             $atributos = $this->sanitizarAtributos();
 
+            // Crea un nuevo String a partir de un Arreglo
+            //$stringJoin = join(', ', array_keys($atributos) );
+
             // INSERT a la BD
-            $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedor_id) VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->estacionamiento', '$this->creado', '$this->vendedor_id')";
+            // $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedor_id) VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->estacionamiento', '$this->creado', '$this->vendedor_id')";
+
+            $query = "INSERT INTO propiedades ( ";
+            $query .= join(', ', array_keys($atributos) );
+            $query .= " ) VALUES (' ";
+            $query .=  join("', '", array_values($atributos) );
+            $query .= " ')" ;
 
             $resultado = self::$db->query($query);
         }
