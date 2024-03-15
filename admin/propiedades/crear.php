@@ -29,7 +29,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $propiedad = new Propiedad($_POST);
 
-        var_dump($propiedad);
+        $propiedad->guardar();
 
         // Sanitizando y/o Evitando INYECTION SQL
         $titulo = mysqli_real_escape_string($db, $_POST['titulo'] );
