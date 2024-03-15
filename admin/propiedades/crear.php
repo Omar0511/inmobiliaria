@@ -27,21 +27,9 @@
 
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        /*
-            Mostrando lo que manda el FORM
-            echo '<pre>';
-                var_dump($_POST);
-            echo '</pre>';
-        */
+        $propiedad = new Propiedad($_POST);
 
-        // Asignamos a las variables el valor enviado por POST
-        // $titulo = $_POST['titulo'];
-        // $precio = $_POST['precio'];
-        // $descripcion = $_POST['descripcion'];
-        // $habitaciones = $_POST['habitaciones'];
-        // $wc = $_POST['wc'];
-        // $estacionamiento = $_POST['estacionamiento'];
-        // $vendedor_id = $_POST['vendedor_id'];
+        var_dump($propiedad);
 
         // Sanitizando y/o Evitando INYECTION SQL
         $titulo = mysqli_real_escape_string($db, $_POST['titulo'] );
