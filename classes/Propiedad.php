@@ -2,6 +2,9 @@
     namespace App;
 
     class Propiedad {
+        // Base de Datos
+        protected static $db;
+
         // Atributos, son los campos que están en la BD
         public $id;
         public $titulo;
@@ -19,7 +22,7 @@
             $this->id = $args['id'] ?? '';
             $this->titulo = $args['titulo'] ?? '';
             $this->precio = $args['precio'] ?? '';
-            $this->imagen = $args['imagen'] ?? '';
+            $this->imagen = $args['imagen'] ?? 'imagen.jpg';
             $this->descripcion = $args['descripcion'] ?? '';
             $this->habitaciones = $args['habitaciones'] ?? '';
             $this->wc = $args['wc'] ?? '';
@@ -29,6 +32,23 @@
         }
 
         public function guardar() {
-            echo "Guardando en la BD";
+            // INSERT a la BD
+            $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedor_id) VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->estacionamiento', '$this->creado', '$this->vendedor_id')";
+
+            $resultado = self::$db->query($query);
         }
+
+        /*
+            public: vas hacer referencia a él como: $this->
+            self: hace referencia a los atributos estáticos de una clase,
+                se hace referencia con: :: (dos puntos)
+                ejemplo: Propiedad::$db, pero como usamos: static, quedaría:
+                self::$db;
+                Nota: al ser: 'static',
+                NO se requiere INSTANCIAR
+        */
+        public static function setDB($database) {
+            self::$db = $database;
+        }
+
     }
