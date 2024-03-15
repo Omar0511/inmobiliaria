@@ -18,6 +18,9 @@
             'vendedor_id',
         ];
 
+        // Errores
+        protected static $errores = [];
+
         // Atributos, son los campos que están en la BD
         public $id;
         public $titulo;
@@ -101,6 +104,54 @@
 
             return $sanitizado;
 
+        }
+
+        public static function getErrores() {
+            return self::$errores;
+        }
+
+        public function validar() {
+            if (!$this->titulo) {
+                self::$errores[] = "El Título es obligatorio";
+            }
+    
+            if (!$this->precio) {
+                self::$errores[] = "El Precio es obligatorio";
+            }
+    
+            if ( strlen( $this->descripcion) < 50 ) {
+                self::$errores[] = "La Descripción debe tener minímo 50 carácteres...";
+            }
+    
+            if (!$this->habitaciones) {
+                self::$errores[] = "Las Habitaciones son obligatorias";
+            }
+    
+            if (!$this->wc) {
+                self::$errores[] = "El WC es obligatorio";
+            }
+    
+            if (!$this->estacionamiento) {
+                self::$errores[] = "El Estacionamiento es obligatorio";
+            }
+    
+            if (!$this->vendedor_id) {
+                self::$errores[] = "El Vendedor es obligatorio";
+            }
+    
+            if (!$this->imagen['name'] || $this->imagen['error']) {
+                self::$errores[] = 'La Imagen es obligatoria';
+            }
+    
+            // Convertir de Bytes a KyloBytes, validar por tamaño (100 kb máximo)
+            $medida = 1000 * 1000;
+    
+            if ($this->imagen['size'] > $medida) {
+                self::$errores[] = 'La Imagen es muy pesada';
+            }
+
+            return self::$errores;
+    
         }
 
     }
