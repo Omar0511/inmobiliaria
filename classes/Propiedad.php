@@ -51,7 +51,7 @@
             $this->id = $args['id'] ?? '';
             $this->titulo = $args['titulo'] ?? '';
             $this->precio = $args['precio'] ?? '';
-            $this->imagen = $args['imagen'] ?? 'imagen.jpg';
+            $this->imagen = $args['imagen'] ?? '';
             $this->descripcion = $args['descripcion'] ?? '';
             $this->habitaciones = $args['habitaciones'] ?? '';
             $this->wc = $args['wc'] ?? '';
@@ -64,11 +64,11 @@
             // Sanitizar los datos
             $atributos = $this->sanitizarAtributos();
 
-            // Crea un nuevo String a partir de un Arreglo
-            //$stringJoin = join(', ', array_keys($atributos) );
-
             // INSERT a la BD
             // $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedor_id) VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->estacionamiento', '$this->creado', '$this->vendedor_id')";
+
+            // Crea un nuevo String a partir de un Arreglo
+            //$stringJoin = join(', ', array_keys($atributos) );
 
             $query = "INSERT INTO propiedades ( ";
             $query .= join(', ', array_keys($atributos) );
@@ -77,6 +77,8 @@
             $query .= " ')" ;
 
             $resultado = self::$db->query($query);
+
+            return $resultado;
         }
 
         // Identificar y unir los atributos de la BD
@@ -104,6 +106,13 @@
 
             return $sanitizado;
 
+        }
+
+        public function setImagen($imagen) {
+            // Asignar al atributo de imagen el nombre de la imagen
+            if ($imagen) {
+                $this->imagen = $imagen;
+            }
         }
 
         public static function getErrores() {
@@ -139,19 +148,11 @@
                 self::$errores[] = "El Vendedor es obligatorio";
             }
     
-            if (!$this->imagen['name'] || $this->imagen['error']) {
+            if (!$this->imagen) {
                 self::$errores[] = 'La Imagen es obligatoria';
             }
     
-            // Convertir de Bytes a KyloBytes, validar por tamaño (100 kb máximo)
-            $medida = 1000 * 1000;
-    
-            if ($this->imagen['size'] > $medida) {
-                self::$errores[] = 'La Imagen es muy pesada';
-            }
-
             return self::$errores;
-    
         }
 
     }

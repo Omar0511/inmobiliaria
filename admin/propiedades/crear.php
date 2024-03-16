@@ -3,6 +3,8 @@
     require '../../include/app.php';
 
     use App\Propiedad;
+    use Intervention\Image\ImageManagerStatic as Image;
+
     $propiedad = new Propiedad;
 
     estaAutenticado();
@@ -27,41 +29,38 @@
 
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Crea una nueva instancia
         $propiedad = new Propiedad($_POST);
+
+        // Generar nombre único de img
+        $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+        if ($_FILES['imagen']['tmp_name']) {
+            // Realiza un resize a la imagen con intervention
+            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
+
+            // Setear la imagen
+            $propiedad->setImagen($nombreImagen);
+        }
 
         $errores = $propiedad->validar();
 
         // Revisar que el array de $errores este vacío
         if ( empty($errores) ) {
-            $propiedad->guardar();
-
-            // Asignar FILES hacia una variable
-            $imagen = $_FILES['imagen'];
-
-            // SUBIDA DE ARCHIVOS
-            $carpetaImagenes = '../../imagenes/';
-
+            // SUBIDA DE ARCHIVOS, Creamos la carpeta            
             // Validar si una carpeta existe: is_dir();
-            if ( !is_dir($carpetaImagenes) ) {
+            if ( !is_dir(CARPETA_IMAGENES) ) {
                 // Crear carpeta
-                mkdir($carpetaImagenes);
+                mkdir(CARPETA_IMAGENES);
             }
 
-            // Generar nombre único de img
-            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+            // Guardar imagen en el servidor
+            $image->save( CARPETA_IMAGENES . $nombreImagen );
 
-            // Subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen );
-
-            // Probar query: echo $query;
-            $resultado = mysqli_query($db, $query);
+            // Guarda en la BD
+            $resultado = $propiedad->guardar();
 
             if ($resultado) {
-                /* 
-                    echo "Insertado con éxito";
-                    Si el formulario se cumple, lo redireccionamos para que no se quede en 
-                    el FORM, pensando que la información no se envío
-                */
                 header('Location: /admin?resultado=1');
             }
         }

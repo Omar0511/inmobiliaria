@@ -11,10 +11,8 @@
 - npm
 - npx
 - Modernizr
-- Iconos
-    -
 - Tipografía
-    -
+    - Lato, sans-serif
 - GitHub
     - Ramas
         - **_main_**
@@ -23,6 +21,22 @@
             - POO
         - **_3.0_**
             - MVC
+- Intervention Image
+    - Instalación por consola:
+        - **_composer require intervention/image:^2_**
+    - Ejemplo de configuración:
+        ```
+            Static Example
+
+            // include composer autoload
+            require 'vendor/autoload.php';
+
+            // import the Intervention Image Manager Class
+            use Intervention\Image\ImageManagerStatic as Image;
+
+            // and you are ready to go ...
+            $image = Image::make('public/foo.jpg')->resize(300, 200);
+        ```
 
 ### Descripción
 
@@ -68,13 +82,13 @@
         - podemos conocer las dependencias que necesitará el proyecto
     - En el archivo:
         - **_composer.json_**
-        ```
-            "autoload": {
-                "psr-4": {
-                    "App\\" : "./classes"
-                }
-            },
-        ```
+            ```
+                "autoload": {
+                    "psr-4": {
+                        "App\\" : "./classes"
+                    }
+                },
+            ```
     - Después de haber configurado lo anterior, ingresamos:
         - **_composer update_**
     - Nos creará:
@@ -97,4 +111,3 @@
     - $propiedad->eliminar();
     - $propiedad->find();
     - $propiedad->all();
-

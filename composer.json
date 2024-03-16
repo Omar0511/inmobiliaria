@@ -13,5 +13,7 @@
             "email": "za19012225@zapopan.tecmm.edu.mx"
         }
     ],
-    "require": {}
+    "require": {
+        "intervention/image": "2"
+    }
 }
