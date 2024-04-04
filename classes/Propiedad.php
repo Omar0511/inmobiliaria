@@ -155,4 +155,46 @@
             return self::$errores;
         }
 
+        // Listar todas las propiedades
+        public static function all() {
+            $query = "SELECT * FROM propiedades";
+
+            // $resultado = self::$db->query($query);
+            // $resultado = self::consultarSQL($query);
+            self::consultarSQL($query);
+        }
+
+        public static function consultarSQL($query) {
+            // Consultar la BD
+            $resultado = self::$db->query($query);
+
+            // Iterar los resultados
+            $array = [];
+
+            while ($registro = $resultado->fetch_assoc() ) {
+                // $array = $registro[''];
+                $array = self::crearObjeto($registro);
+            }
+
+            // Liberar memoria
+            $resultado->free();
+
+            // Retornar los resultados
+            return $array;
+        }
+
+        // ActiveRecord acepta OBJETOS por lo que un ARRAY se tiene que convertir a OBJETO
+        protected static function crearObjeto($registro) {
+            // new self, indica de la CLASE PADRE (Propiedad)
+            $objeto = new self;
+
+            foreach ($registro as $key => $value) {
+                if (property_exists($objeto, $key)) {
+                    $objeto->$key = $value;
+                }
+
+            }
+
+            return $objeto;
+        }
     }

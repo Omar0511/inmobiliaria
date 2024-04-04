@@ -1,16 +1,15 @@
 <?php
 
+    use App\Propiedad;
+
     require '../include/app.php';
     
     estaAutenticado();
 
+    // Implementar método para obtener las propiedades
+    $propiedades = Propiedad::all();
+
     $db = conectarDB();
-
-    // Escribir Query
-    $query = "SELECT * FROM propiedades";
-
-    // Consultar la BD
-    $resultadoPropiedades = mysqli_query($db, $query);
 
     // Muestra mensaje condicional
     $resultado = $_GET['resultado'] ?? null;
