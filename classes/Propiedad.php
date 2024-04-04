@@ -161,7 +161,9 @@
 
             // $resultado = self::$db->query($query);
             // $resultado = self::consultarSQL($query);
-            self::consultarSQL($query);
+            $resultado = self::consultarSQL($query);
+
+            return $resultado;
         }
 
         public static function consultarSQL($query) {
@@ -173,7 +175,7 @@
 
             while ($registro = $resultado->fetch_assoc() ) {
                 // $array = $registro[''];
-                $array = self::crearObjeto($registro);
+                $array[] = self::crearObjeto($registro);
             }
 
             // Liberar memoria

@@ -74,25 +74,26 @@
 
             <!-- Mostrar los resultados de la BD -->
             <tbody>
-                <?php while( $propiedad = mysqli_fetch_assoc($resultadoPropiedades)): ?>
+                <!-- foreach: es usado especialmente para recorrer arreglos -->
+                <?php foreach ($propiedades as $propiedad) : ?>
                     <tr>
-                        <td> <?php echo $propiedad['id']; ?> </td>
-                        <td> <?php echo $propiedad['titulo']; ?> </td>                        
+                        <td> <?php echo $propiedad->id; ?> </td>
+                        <td> <?php echo $propiedad->titulo; ?> </td>                        
                         <td>
-                            <img class="imagen-tabla" src="../imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de Casa">
+                            <img class="imagen-tabla" src="../imagenes/<?php echo $propiedad->imagen; ?>" alt="Imagen de Casa">
                         </td>
-                        <td> $<?php echo $propiedad['precio']; ?> </td>
+                        <td> $<?php echo $propiedad->precio; ?> </td>
                         <td>
                             <form method="POST" class="w-100">
-                                <input type="hidden" name="id" id="id" value="<?php echo $propiedad['id']; ?>">
+                                <input type="hidden" name="id" id="id" value="<?php echo $propiedad->id; ?>">
 
                                 <input type="submit" class="boton-rojo-block" value="Eliminar">
                             </form>
 
-                            <a class="boton-amarillo-block" href="/admin/propiedades/actualizar.php?id=<?php echo $propiedad['id'];?>">Actualizar</a>
+                            <a class="boton-amarillo-block" href="/admin/propiedades/actualizar.php?id=<?php echo $propiedad->id;?>">Actualizar</a>
                         </td>
                     </tr>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </main>
