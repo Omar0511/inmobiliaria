@@ -30,7 +30,8 @@
     $resultado = mysqli_query($db, $query);
 
     // Arreglo con mensaje de errores
-    $errores = [];
+    // $errores = [];
+    $errores = Propiedad::getErrores();
 
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -40,19 +41,7 @@
 
         $propiedad->sincronizar($args);
         
-        // Asignar FILES hacia una variable
-        $imagen = $_FILES['imagen'];
-
-        if (!$vendedor_id) {
-            $errores[] = "El Vendedor es obligatorio";
-        }
-
-        // Convertir de Bytes a KyloBytes, validar por tamaño (100 kb máximo)
-        $medida = 1000 * 1000;
-
-        if ($imagen['size'] > $medida) {
-            $errores[] = 'La Imagen es muy pesada';
-        }
+        $errores = $propiedad->validar();
 
         // Revisar que el array de $errores este vacío
         if ( empty($errores) ) {
