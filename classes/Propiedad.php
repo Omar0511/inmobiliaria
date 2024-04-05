@@ -56,17 +56,25 @@
             $this->habitaciones = $args['habitaciones'] ?? '';
             $this->wc = $args['wc'] ?? '';
             $this->estacionamiento = $args['estacionamiento'] ?? '';
-            $this->creado = date('Y/m/d');
-            $this->vendedor_id = $args['vendedor_id'] ?? '';
+            $this->creado = date('YYYY/MMMM/DD');
+            $this->vendedor_id = $args['vendedor_id'] ?? 1;
         }
 
         public function guardar() {
+            if ( isset($this->id) ) {
+                // Actualizar
+                $this->actualizar();
+            } else {
+                // Crear nuevo registro
+                $this->crear();
+            }
+        }
+
+        public function crear() {
             // Sanitizar los datos
             $atributos = $this->sanitizarAtributos();
 
             // INSERT a la BD
-            // $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedor_id) VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->estacionamiento', '$this->creado', '$this->vendedor_id')";
-
             // Crea un nuevo String a partir de un Arreglo
             //$stringJoin = join(', ', array_keys($atributos) );
 
@@ -75,10 +83,37 @@
             $query .= " ) VALUES (' ";
             $query .=  join("', '", array_values($atributos) );
             $query .= " ')" ;
+            debuguear($query);
 
             $resultado = self::$db->query($query);
 
             return $resultado;
+        }
+
+        public function actualizar() {
+            // Sanitizar los datos
+            $atributos = $this->sanitizarAtributos();
+
+            $valores = [];
+
+            foreach ($atributos as $key => $value) {
+                $valores[] = "{$key}='{$value}'";
+            }
+
+            // join, los une pero los separa por una coma
+            //debuguear( join(', ', $valores) );
+
+            $query = "UPDATE propiedades SET ";
+            $query .= join(', ', $valores );
+            $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+            $query .= " LIMIT 1 ";
+
+            $resultado = self::$db->query($query);
+
+            if ($resultado) {
+                header('Location: /admin?resultado=2');
+            }
+
         }
 
         // Identificar y unir los atributos de la BD
@@ -110,7 +145,7 @@
 
         public function setImagen($imagen) {
             // Elimina la imagen previa
-            if ($this->id) {
+            if ( isset( $this->id) ) {
                 // Comprobar si existe el archivo
                 $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
 

@@ -1,15 +1,9 @@
 <?php
-    // require '../../include/funciones.php';
-    // $auth = estaAutenticado();
-
-    // if (!$auth) {
-    //     header('Location: /login.php');
-    // }
-
     use App\Propiedad;
     use Intervention\Image\ImageManagerStatic as Image;
 
     require '../../include/app.php';
+
     estaAutenticado();
     
     // Validamos que el ID sea un ENTERO
@@ -21,9 +15,6 @@
     }
 
     // Consultar Porpiedades por ID
-    // $consulta = "SELECT * FROM propiedades WHERE id = ${id}";
-    // $resultado = mysqli_query($db, $consulta);
-    // $propiedad = mysqli_fetch_assoc($resultado);
     $propiedad = Propiedad::find($id);
 
     // Consultar vendedores
@@ -31,7 +22,6 @@
     $resultado = mysqli_query($db, $query);
 
     // Arreglo con mensaje de errores
-    // $errores = [];
     $errores = Propiedad::getErrores();
 
     // Ejecutar el código después de que el usuario envía el formulario
@@ -57,18 +47,9 @@
 
         // Revisar que el array de $errores este vacío
         if ( empty($errores) ) {
+            $image->save(CARPETA_IMAGENES . $nombreImagen);
 
-
-            // INSERT a la BD
-            $query = "UPDATE propiedades SET titulo = '${titulo}', precio = '${precio}', imagen = '${nombreImagen}', descripcion = '${descripcion}', habitaciones = ${habitaciones}, wc = ${wc}, estacionamiento = ${estacionamiento}, vendedor_id = ${vendedor_id} WHERE id = ${id}
-            ";
-
-            // Probar query: echo $query;
-            $resultado = mysqli_query($db, $query);
-
-            if ($resultado) {
-                header('Location: /admin?resultado=2');
-            }
+            $propiedad->guardar();
         }
 
     }
