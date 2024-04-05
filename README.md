@@ -37,6 +37,10 @@
             // and you are ready to go ...
             $image = Image::make('public/foo.jpg')->resize(300, 200);
         ```
+    - Extensión:
+        - _PHP NAMESPACE RESOLVER_
+        - Te autocompleta cuando manda llamar las Clases o Instancias de las mismas
+            - Ejemplo: **use App\Propiedad;**
 
 ### Descripción
 

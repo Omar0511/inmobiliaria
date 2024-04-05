@@ -166,6 +166,16 @@
             return $resultado;
         }
 
+        // Busca un registro por ID
+        public static function find($id) {
+            $query = "SELECT * FROM propiedades WHERE id = $id";
+
+            $resultado = self::consultarSQL($query);
+
+            // array_shift: retorna el primer elemento de un arreglo
+            return array_shift($resultado);
+        }
+
         public static function consultarSQL($query) {
             // Consultar la BD
             $resultado = self::$db->query($query);

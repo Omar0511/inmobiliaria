@@ -11,6 +11,10 @@
     <!-- accept: indica que aceptará, en este caso imagénes con formato jpeg, png -->
     <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png" >
 
+    <?php if ($propiedad->imagen) { ?>
+        <img src="/imagenes/<?php echo $propiedad->imagen; ?>" class="imagen-small" alt="Imagen ">
+    <?php } ?>
+
     <label for="descripcion">Descripción</label>
     <textarea name="descripcion" id="descripcion"><?php echo s($propiedad->descripcion); ?></textarea>
 </fieldset>
