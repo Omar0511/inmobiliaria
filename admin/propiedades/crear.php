@@ -24,14 +24,14 @@
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Crea una nueva instancia
-        $propiedad = new Propiedad($_POST);
+        $propiedad = new Propiedad($_POST['propiedad']);
 
         // Generar nombre único de img
         $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
 
-        if ($_FILES['imagen']['tmp_name']) {
+        if ($_FILES['propiedad']['tmp_name']['imagen']) {
             // Realiza un resize a la imagen con intervention
-            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
+            $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
 
             // Setear la imagen
             $propiedad->setImagen($nombreImagen);

@@ -34,53 +34,14 @@
 
     // Ejecutar el código después de que el usuario envía el formulario
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        /*
-            Mostrando lo que manda el FORM
-            echo '<pre>';
-                var_dump($_POST);
-            echo '</pre>';
-        */
+        //debuguear($propiedad);
 
-        // Sanitizando y/o Evitando INYECTION SQL
-        $titulo = mysqli_real_escape_string($db, $_POST['titulo'] );
-        $precio = mysqli_real_escape_string($db, $_POST['precio'] );
-        $descripcion = mysqli_real_escape_string($db, $_POST['descripcion'] );
-        $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones'] );
-        $wc = mysqli_real_escape_string($db, $_POST['wc'] );
-        $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento'] );
-        // $vendedor_id = mysqli_real_escape_string($db, $_POST['vendedor_id'] );
+        $args = $_POST['propiedad'];
+
+        $propiedad->sincronizar($args);
         
-        // Asignar vendedor_id si está definido en $_POST, de lo contrario, asignar un valor predeterminado (por ejemplo, '')
-        $vendedor_id = isset($_POST['vendedor_id']) ? mysqli_real_escape_string($db, $_POST['vendedor_id']) : '';
-
-        $creado = date('Y/m/d');
-
         // Asignar FILES hacia una variable
         $imagen = $_FILES['imagen'];
-
-        if (!$titulo) {
-            $errores[] = "El Título es obligatorio";
-        }
-
-        if (!$precio) {
-            $errores[] = "El Precio es obligatorio";
-        }
-
-        if ( strlen( $descripcion) < 50 ) {
-            $errores[] = "La Descripción debe tener minímo 50 carácteres...";
-        }
-
-        if (!$habitaciones) {
-            $errores[] = "Las Habitaciones son obligatorias";
-        }
-
-        if (!$wc) {
-            $errores[] = "El WC es obligatorio";
-        }
-
-        if (!$estacionamiento) {
-            $errores[] = "El Estacionamiento es obligatorio";
-        }
 
         if (!$vendedor_id) {
             $errores[] = "El Vendedor es obligatorio";
