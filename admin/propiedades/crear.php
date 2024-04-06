@@ -3,20 +3,16 @@
     require '../../include/app.php';
 
     use App\Propiedad;
+    use App\Vendedor;
     use Intervention\Image\ImageManagerStatic as Image;
 
     $propiedad = new Propiedad;
 
     estaAutenticado();
 
-    // Mandamos llamar la función que viene de database.php
-    $db = conectarDB();
-
     $propiedad = new Propiedad;
-
     // Consultar vendedores
-    $query = "SELECT * FROM vendedores";
-    $resultado = mysqli_query($db, $query);
+    $vendedores = Vendedor::all();
 
     // Arreglo con mensaje de errores
     $errores = Propiedad::getErrores();
