@@ -48,7 +48,7 @@
 
         public function __construct($args = [])
         {
-            $this->id = $args['id'] ?? '';
+            $this->id = $args['id'] ?? null;
             $this->titulo = $args['titulo'] ?? '';
             $this->precio = $args['precio'] ?? '';
             $this->imagen = $args['imagen'] ?? '';
@@ -56,7 +56,7 @@
             $this->habitaciones = $args['habitaciones'] ?? '';
             $this->wc = $args['wc'] ?? '';
             $this->estacionamiento = $args['estacionamiento'] ?? '';
-            $this->creado = date('YYYY/MMMM/DD');
+            $this->creado = date('Y-m-d');
             $this->vendedor_id = $args['vendedor_id'] ?? 1;
         }
 
@@ -91,7 +91,6 @@
                 header('Location: /admin?resultado=1');
             }
 
-            return $resultado;
         }
 
         public function actualizar() {
@@ -164,7 +163,7 @@
 
         public function setImagen($imagen) {
             // Elimina la imagen previa
-            if ( isset($this->id) ) {
+            if ( !is_null($this->id) ) {
                 $this->borrarImagen();
             }
 
