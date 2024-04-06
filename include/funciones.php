@@ -31,3 +31,14 @@
 
         return $s;
     }
+
+    function validarTipoContenido($tipo) {
+        $tipos = ['vendedor', 'propiedad'];
+
+        /* 
+            in_array: Buscar un valor dentro de un arreglo (un string)
+            Lo que vamos a buscar esta en: $tipo
+            El arreglo donde lo va buscar esta en: $tipos
+        */
+        return in_array($tipo, $tipos);
+    }

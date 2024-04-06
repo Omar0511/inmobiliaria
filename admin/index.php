@@ -18,9 +18,21 @@
         $id = filter_var( $id, FILTER_VALIDATE_INT);
 
         if ($id) {
-            $propiedad = Propiedad::find($id);
+            $tipo = $_POST['tipo'];
 
-            $propiedad->eliminar();
+            if ( validarTipoContenido($tipo) ) {
+
+                if ($tipo === 'vendedor') {
+                    $vendedor = Vendedor::find($id);
+
+                    $vendedor->eliminar();
+                } else if ($tipo === 'propiedad') {
+                    $propiedad = Propiedad::find($id);
+
+                    $propiedad->eliminar();
+                }
+
+            }
         }
         
     }
@@ -68,14 +80,18 @@
                 <?php foreach ($propiedades as $propiedad) : ?>
                     <tr>
                         <td> <?php echo $propiedad->id; ?> </td>
-                        <td> <?php echo $propiedad->titulo; ?> </td>                        
+                        <td> <?php echo $propiedad->titulo; ?> </td> 
+
                         <td>
                             <img class="imagen-tabla" src="../imagenes/<?php echo $propiedad->imagen; ?>" alt="Imagen de Casa">
                         </td>
+
                         <td> $<?php echo $propiedad->precio; ?> </td>
+
                         <td>
                             <form method="POST" class="w-100">
                                 <input type="hidden" name="id" id="id" value="<?php echo $propiedad->id; ?>">
+                                <input type="hidden" name="tipo" id="tipo" value="propiedad">
 
                                 <input type="submit" class="boton-rojo-block" value="Eliminar">
                             </form>
@@ -109,6 +125,7 @@
                         <td>
                             <form method="POST" class="w-100">
                                 <input type="hidden" name="id" id="id" value="<?php echo $vendedor->id; ?>">
+                                <input type="hidden" name="tipo" id="tipo" value="vendedor">
 
                                 <input type="submit" class="boton-rojo-block" value="Eliminar">
                             </form>

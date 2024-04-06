@@ -13,14 +13,13 @@
 - Modernizr
 - Tipografía
     - Lato, sans-serif
+- Composer
+- Active Record
 - GitHub
     - Ramas
-        - **_main_**
-            - Código Spaguetti
-        - **_2.0_**
-            - POO
-        - **_3.0_**
-            - MVC
+        1. _main_: **Código Spaguetti**
+        1. **_POO_**
+        1. **_MVC_**
 - Intervention Image
     - Instalación por consola:
         - **_composer require intervention/image:^2_**
