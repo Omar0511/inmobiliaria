@@ -44,7 +44,7 @@
         ?>
                 <option 
                     <?php echo $vendedor_id === $row['id'] ? 'selected' : ''; ?>  
-                    value="<?php echo s( $propiedades->row['id'] ); ?>"
+                    value="<?php echo s( $propiedad->row['id'] ); ?>"
                 >
                     <?php echo $row['nombre'] . " " . $row['apellido']; ?>
                 </option>

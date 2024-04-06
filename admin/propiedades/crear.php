@@ -52,11 +52,7 @@
             $image->save( CARPETA_IMAGENES . $nombreImagen );
 
             // Guarda en la BD
-            $resultado = $propiedad->guardar();
-
-            if ($resultado) {
-                header('Location: /admin?resultado=1');
-            }
+            $propiedad->guardar();
         }
 
     }
@@ -79,7 +75,7 @@
         ?>
 
         <!-- enctype="multipart/form-data": se agrega si queremos subir archivos y/o imagénes -->
-        <form action="" class="formulario" method="POST" enctype="multipart/form-data">
+        <form action="/admin/propiedades/crear.php" class="formulario" method="POST" enctype="multipart/form-data">
             <?php include '../../include/templates/formulario-propiedades.php'; ?>
 
             <input type="submit" value="Crear Propiedad" class="boton boton-verde-inline-block">
