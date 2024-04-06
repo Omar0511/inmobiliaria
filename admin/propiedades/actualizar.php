@@ -17,7 +17,6 @@ use Intervention\Image\ImageManagerStatic as Image;
 
     // Consultar Porpiedades por ID
     $propiedad = Propiedad::find($id);
-
     $vendedores = Vendedor::all();
 
     // Arreglo con mensaje de errores
@@ -46,7 +45,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
         // Revisar que el array de $errores este vacío
         if ( empty($errores) ) {
-            $image->save(CARPETA_IMAGENES . $nombreImagen);
+            if ($_FILES['propiedad']['tmp_name']['imagen']) {
+                $image->save(CARPETA_IMAGENES . $nombreImagen);
+            }            
 
             $propiedad->guardar();
         }

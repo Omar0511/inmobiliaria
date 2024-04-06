@@ -4,7 +4,7 @@
 
     class ActiveRecord {
         // Base de Datos
-        protected static $conexion;
+        protected static $db;
         protected static $columnasDB = [];
         protected static $tabla = '';
         // Errores
@@ -14,13 +14,13 @@
             public: vas hacer referencia a él como: $this->
             self: hace referencia a los atributos estáticos de una clase,
                 se hace referencia con: :: (dos puntos)
-                ejemplo: Propiedad::$conexion, pero como usamos: static, quedaría:
-                self::$conexion;
-                Nota: al ser: 'static',
+                ejemplo: Propiedad::$db, pero como usamos: static, quedaría:
+                self::$db;
+            Nota: al ser: 'static',
                 NO se requiere INSTANCIAR
         */
         public static function setDB($database) {
-            self::$conexion = $database;
+            self::$db = $database;
         }
 
         public function guardar() {
@@ -48,7 +48,7 @@
             $query .= " ')" ;
             // debuguear($query);
 
-            $resultado = self::$conexion->query($query);
+            $resultado = self::$db->query($query);
 
             if ($resultado) {
                 header('Location: /admin?resultado=1');
@@ -71,10 +71,10 @@
 
             $query = "UPDATE " . static::$tabla . " SET ";
             $query .= join(', ', $valores );
-            $query .= " WHERE id = '" . self::$conexion->escape_string($this->id) . "' ";
+            $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
             $query .= " LIMIT 1 ";
 
-            $resultado = self::$conexion->query($query);
+            $resultado = self::$db->query($query);
 
             if ($resultado) {
                 header('Location: /admin?resultado=2');
@@ -84,9 +84,9 @@
 
         // Eliminar un registro
         public function eliminar() {
-            $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$conexion->escape_string($this->id) . " LIMIT 1";
+            $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
 
-            $resultado = self::$conexion->query($query);
+            $resultado = self::$db->query($query);
 
             if ($resultado) {
                 $this->borrarImagen();
@@ -100,7 +100,7 @@
         public function atributos() {
             $atributos = [];
 
-            foreach(self::$columnasDB as $columna) {
+            foreach(static::$columnasDB as $columna) {
                 if ($columna === 'id') {
                     continue;
                 }
@@ -116,7 +116,7 @@
             $sanitizado = [];
 
             foreach($atributos as $key => $value) {
-                $sanitizado[$key] = self::$conexion->escape_string($value);
+                $sanitizado[$key] = self::$db->escape_string($value);
             }
 
             return $sanitizado;
@@ -167,7 +167,7 @@
             */
             $query = "SELECT * FROM " . static::$tabla;
 
-            // $resultado = self::$conexion->query($query);
+            // $resultado = self::$db->query($query);
             // $resultado = self::consultarSQL($query);
             $resultado = self::consultarSQL($query);
 
@@ -186,14 +186,14 @@
 
         public static function consultarSQL($query) {
             // Consultar la BD
-            $resultado = self::$conexion->query($query);
+            $resultado = self::$db->query($query);
 
             // Iterar los resultados
             $array = [];
 
             while ($registro = $resultado->fetch_assoc() ) {
                 // $array = $registro[''];
-                $array[] = self::crearObjeto($registro);
+                $array[] = static::crearObjeto($registro);
             }
 
             // Liberar memoria
