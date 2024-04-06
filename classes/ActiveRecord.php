@@ -149,7 +149,13 @@
         }
 
         public static function getErrores() {
-            return self::$errores;
+            return static::$errores;
+        }
+
+        public function validar() {
+            static::$errores = [];
+
+            return static::$errores;
         }
 
         // Listar todas las propiedades

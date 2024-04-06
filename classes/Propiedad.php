@@ -74,7 +74,7 @@
             }
     
             if (!$this->imagen) {
-                self::$errores[] = 'La Imagen es obligatoria';
+                self::$errores[] = 'La Imagen de la Propiedad es obligatoria';
             }
     
             return self::$errores;
