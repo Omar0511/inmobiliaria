@@ -52,7 +52,7 @@
                         <?php
                             if ($auth) {
                         ?>
-                                <a href="cerrar-sesion.php">Cerrar Sesión</a>
+                                <a href="/cerrar-sesion.php">Cerrar Sesión</a>
                         <?php 
                             }
                         ?>
