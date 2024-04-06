@@ -1,13 +1,14 @@
 <?php
-
-    use App\Propiedad;
-
     require '../include/app.php';
     
     estaAutenticado();
+    
+    use App\Propiedad;
+    use App\Vendedor;
 
     // Implementar método para obtener las propiedades
     $propiedades = Propiedad::all();
+    $vendedor = Vendedor::all();
 
     $db = conectarDB();
 

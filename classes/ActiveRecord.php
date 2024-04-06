@@ -19,6 +19,8 @@
             'vendedor_id',
         ];
 
+        protected static $tabla = '';
+
         // Errores
         protected static $errores = [];
 
@@ -58,7 +60,7 @@
             $this->wc = $args['wc'] ?? '';
             $this->estacionamiento = $args['estacionamiento'] ?? '';
             $this->creado = date('Y-m-d');
-            $this->vendedor_id = $args['vendedor_id'] ?? 1;
+            $this->vendedor_id = $args['vendedor_id'] ?? '';
         }
 
         public function guardar() {
@@ -79,7 +81,7 @@
             // Crea un nuevo String a partir de un Arreglo
             //$stringJoin = join(', ', array_keys($atributos) );
 
-            $query = "INSERT INTO propiedades ( ";
+            $query = "INSERT INTO "  . static::$tabla . " ( ";
             $query .= join(', ', array_keys($atributos) );
             $query .= " ) VALUES ('";
             $query .=  join("', '", array_values($atributos) );
@@ -107,7 +109,7 @@
             // join, los une pero los separa por una coma
             //debuguear( join(', ', $valores) );
 
-            $query = "UPDATE propiedades SET ";
+            $query = "UPDATE " . static::$tabla . " SET ";
             $query .= join(', ', $valores );
             $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
             $query .= " LIMIT 1 ";
@@ -122,8 +124,7 @@
 
         // Eliminar un registro
         public function eliminar() {
-            // Eliminar la Propiedad
-            $query = "DELETE FROM propiedades WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+            $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
 
             $resultado = self::$db->query($query);
 
@@ -229,7 +230,12 @@
 
         // Listar todas las propiedades
         public static function all() {
-            $query = "SELECT * FROM propiedades";
+            /**
+             * static: 
+             * va HEREDAR el método y buscará el atributo en la clase
+             * que se esta HEREDANDO
+            */
+            $query = "SELECT * FROM " . static::$tabla;
 
             // $resultado = self::$db->query($query);
             // $resultado = self::consultarSQL($query);
@@ -240,7 +246,7 @@
 
         // Busca un registro por ID
         public static function find($id) {
-            $query = "SELECT * FROM propiedades WHERE id = $id";
+            $query = "SELECT * FROM " . static::$tabla . " WHERE id = $id";
 
             $resultado = self::consultarSQL($query);
 
