@@ -24,4 +24,25 @@
             $this->telefono = $args['telefono'] ?? '';
         }
 
+        public function validar() {
+            if (!$this->nombre) {
+                self::$errores[] = "El Nombre es obligatorio";
+            }
+
+            if (!$this->apellido) {
+                self::$errores[] = "El Apellido es obligatorio";
+            }
+
+            if (!$this->telefono) {
+                self::$errores[] = "El Teléfono es obligatorio";                            
+            } 
+
+            // preg_match: sirve para EXPRESIONES REGULARES, valida que haya 10 números del 0 al 9 en teléfono
+            if ( !preg_match('/[0-9]{10}/', $this->telefono) ) {
+                self::$errores[] = "El Teléfono debe contener 10 dígitos";
+            }
+
+            return self::$errores;
+        }
+
     }
