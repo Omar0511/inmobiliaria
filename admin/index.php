@@ -61,6 +61,7 @@
         ?>
 
         <a href="/admin/propiedades/crear.php" class="boton boton-verde-inline-block">Nueva Propiedad</a>
+        <a href="/admin/vendedores/crear.php" class="boton boton-amarillo-inline-block">Nuevo Vendedor</a>
 
         <h2>Propiedades</h2>
         <table class="propiedades">
@@ -130,7 +131,7 @@
                                 <input type="submit" class="boton-rojo-block" value="Eliminar">
                             </form>
 
-                            <a class="boton-amarillo-block" href="/admin/vemdedores/actualizar.php?id=<?php echo $vendedor->id;?>">Actualizar</a>
+                            <a class="boton-amarillo-block" href="/admin/vendedores/actualizar.php?id=<?php echo $vendedor->id;?>">Actualizar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
