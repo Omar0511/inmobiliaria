@@ -42,10 +42,7 @@
     <section class="seccion contenedor">
         <h2>Casas y Depas en Venta</h2>
 
-        <?php
-            $limite = 3;
-            include 'include/templates/anuncios.php'; 
-        ?>
+        <?php include 'include/templates/anuncios.php'; ?>
 
         <div class="alinear-derecha">
             <a class="boton-verde-inline-block" href="anuncios.php">Ver Todas</a>
