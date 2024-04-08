@@ -44,18 +44,12 @@
         <h1>Administrador</h1>
 
         <?php 
-            // intval() = convierte un STRING a ENTERO
-            if ( intval( $resultado ) === 1) {            
+            // intval(): convierte una cadena STRING a ENTERO int
+            $mensaje = mostrarNotificacion( intval( $resultado) ); 
+
+            if ($mensaje) {
         ?>
-                <p class="alerta exito">Creado correctamente</p>
-        <?php 
-            } else if ( intval( $resultado ) === 2) {
-        ?>
-                <p class="alerta exito">Actualizado correctamente</p>
-        <?php
-            } else if ( intval( $resultado ) === 3) {
-        ?>
-                <p class="alerta exito">Eliminado correctamente</p>
+                <p class="alerta exito"> <?php echo s($mensaje); ?> </p>
         <?php
             }
         ?>
