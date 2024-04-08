@@ -14,10 +14,8 @@
         header('Location: /admin');
     }
     
-    $vendedor = new Vendedor;
-
     // Consultar Porpiedades por ID
-    $vendedor = Vendedor::all();
+    $vendedor = Vendedor::find($id);
 
     $errores = Vendedor::getErrores();
 
