@@ -82,3 +82,39 @@
     - Ejemplo:
         - Si el usuario accede a una URL, el Router ya tiene indicaciones de comunicarse con un Controlador en específico, ese Controlador ya sabe que Modelo va a llamar y que vista va a ejecutar.
     
+#### Pasos
+
+- Se crea una carpeta llamada:
+    - **_public_**
+        - todo lo que esta aquí, es a lo que los usuarios prodrán acceder
+- Una vez creada, tenemos que estar dentro de esa carpeta
+    - _cd public/_
+- Los archivos de:
+    - **_composer.json_**
+    - **_composer.lock_**
+        - deben estar fuera de la carpeta de public
+- En caso que estes moviendo todo a un nuevo proyecto, entonces al hacerlo, tienes que ejecutar:
+    - **_composer install_**
+        - Instalará todas las dependencias
+- La carpeta de clases la renombramos por:
+    - **_models_**
+- Los archivos:
+    - **_gulpfile.js_**
+        - Dentro del archivo, las rutas que contenga **_build_**, debemos modificarlas por:
+        ```
+            'build/'
+
+            - Se cambia por:                        
+            './public/build/'
+        ```
+    - **_package.json_**
+    - **_package-lock-json_**
+        - También se mueven, (tomamos como referencia el proyecto con POO)
+        - Ejecutamos: **_npm i_**
+- La carpeta de:
+    - **_build_**
+        - Debe estar en **_public_**
+            - Para ello ejecutamos:
+                - **_gulp_**
+    - La carpeta que estaba en raíz, la puedes borrar, al ejecutar el comando, la creará de nueva cuenta pero ya dentro de **_public_**
+    
