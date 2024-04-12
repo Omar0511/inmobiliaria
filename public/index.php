@@ -5,3 +5,7 @@
     use MVC\Router;
 
     $router = new Router();
+
+    $router->get();
+
+    $router->comprobarRutas();
