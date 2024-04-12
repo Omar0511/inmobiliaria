@@ -132,3 +132,15 @@
         **_namespace Model_++
 - Cada vez que hagamos un cambio de este tipo, mejor dicho en el composer.json, tenemos que ejecutar:
     - **_composer update_**
+- En el archivo: **_composer.json_** agregamos la línea de _MVC_ y _Controllers_:
+    ```
+        "autoload": {
+            "psr-4": {
+                "Model\\" : "./models",
+                "MVC\\" : "./",
+                "Controllers\\" : "./controllers"
+            }
+        },
+    ```
+- Volvemos a ejecutar:
+    - **_composer update_**
