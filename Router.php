@@ -24,8 +24,14 @@
                 // Nos permite llamar una función, que no sabemos como se llama
                 call_user_func($fn, $this);
             } else {
-
+                echo "Página NO encontrada";
             }
 
         }
+
+        // Muestra una Vista (Views)
+        public function render($view) {
+            include __DIR__ . "/views/$view.php";
+        }
+
     }
