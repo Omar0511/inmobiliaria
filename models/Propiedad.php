@@ -1,5 +1,5 @@
 <?php
-    namespace App;
+    namespace Model;
 
     // Heredamos de ActiveRecord
     class Propiedad extends ActiveRecord {

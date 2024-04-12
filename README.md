@@ -117,4 +117,18 @@
             - Para ello ejecutamos:
                 - **_gulp_**
     - La carpeta que estaba en raíz, la puedes borrar, al ejecutar el comando, la creará de nueva cuenta pero ya dentro de **_public_**
-    
+- En el archivo, tenemos que cambiar _classes_ por _models_, y el App por Model:
+    - **_composer.json_**
+    ```
+        "autoload": {
+            "psr-4": {
+                "Model\\" : "./models"
+            }
+        },
+    ```
+- Todos los archivos que tenian:
+    - **_namespace App_**
+    - Lo tenemos que cambiar por:
+        **_namespace Model_++
+- Cada vez que hagamos un cambio de este tipo, mejor dicho en el composer.json, tenemos que ejecutar:
+    - **_composer update_**
