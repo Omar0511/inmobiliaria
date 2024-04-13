@@ -6,13 +6,14 @@
     use Model\Propiedad;
     use Model\Vendedor;
     use MVC\Router;
+    use Intervention\Image\ImageManagerStatic as Image;
 
     class PropiedadController {
         public static function index(Router $router) {
             $propiedades = Propiedad::all();
             $vendedores = Vendedor::all();
 
-            $resultado = null;
+            $resultado = $_GET['resultado'] ?? null;
 
             $router->render('propiedades/admin', [
                 // key - variable
@@ -26,13 +27,48 @@
             $propiedad = new Propiedad;
             $vendedores = Vendedor::all();
 
+            // Arreglo con mensaje de errores
+            $errores = Propiedad::getErrores();
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Crea una nueva instancia
+                $propiedad = new Propiedad($_POST['propiedad']);
+
+                // Generar nombre único de img
+                $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+                if ( $_FILES['propiedad']['tmp_name']['imagen'] ) {
+                    // Realiza un resize a la imagen con intervention
+                    $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
+
+                    // Setear la imagen
+                    $propiedad->setImagen($nombreImagen);
+                }
+
+                $errores = $propiedad->validar();
+
+                // Revisar que el array de $errores este vacío
+                if ( empty($errores) ) {
+                    // SUBIDA DE ARCHIVOS, Creamos la carpeta            
+                    // Validar si una carpeta existe: is_dir();
+                    if ( !is_dir(CARPETA_IMAGENES) ) {
+                        // Crear carpeta
+                        mkdir(CARPETA_IMAGENES);
+                    }
+
+                    // Guardar imagen en el servidor
+                    $image->save( CARPETA_IMAGENES . $nombreImagen );
+
+                    // Guarda en la BD
+                    $propiedad->guardar();
+                }
 
             }
 
             $router->render('propiedades/crear', [
                 'propiedad' => $propiedad,
                 'vendedores' => $vendedores,
+                'errores' => $errores,
             ]);
         }
 
