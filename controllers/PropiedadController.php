@@ -2,12 +2,23 @@
     namespace Controllers;
 
     // El Controlador manda llamar las Vistas
+
+    use Model\Propiedad;
+    use Model\Vendedor;
     use MVC\Router;
 
     class PropiedadController {
         public static function index(Router $router) {
+            $propiedades = Propiedad::all();
+            $vendedores = Vendedor::all();
+
+            $resultado = null;
+
             $router->render('propiedades/admin', [
-                'mensaje' => 'Desde la vista'
+                // key - variable
+                'propiedades' => $propiedades,
+                'vendedores' => $vendedores,
+                'resultado' => $resultado,
             ]);
         }
 
