@@ -31,7 +31,15 @@
 
         // Muestra una Vista (Views)
         public function render($view) {
+            // Inicia un almacenamiento en memoria
+            ob_start();
+
             include __DIR__ . "/views/$view.php";
+
+            // Limpia la memoria (vista)
+            $contenido = ob_get_clean();
+
+            include __DIR__ . "/views/layout.php";
         }
 
     }
