@@ -72,8 +72,54 @@
             ]);
         }
 
-        public static function actualizar() {
-            echo "Actualizar";
+        public static function actualizar(Router $router) {
+            $id = validarORedirrecionar('/admin');
+
+            // Consultar Porpiedades por ID
+            $propiedad = Propiedad::find($id);
+            $vendedores = Vendedor::all();
+
+            // Arreglo con mensaje de errores
+            $errores = Propiedad::getErrores();
+
+            // Ejecutar el código después de que el usuario envía el formulario
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                //debuguear($propiedad);
+
+                $args = $_POST['propiedad'];
+
+                $propiedad->sincronizar($args);
+                
+                $errores = $propiedad->validar();
+
+                // Generar nombre único de img
+                $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+                // Subida de archivos
+                if ($_FILES['propiedad']['tmp_name']['imagen']) {
+                    // Realiza un resize a la imagen con intervention
+                    $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);            
+                    // Setear la imagen
+                    $propiedad->setImagen($nombreImagen);
+                }
+
+                // Revisar que el array de $errores este vacío
+                if ( empty($errores) ) {
+                    if ($_FILES['propiedad']['tmp_name']['imagen']) {
+                        $image->save(CARPETA_IMAGENES . $nombreImagen);
+                    }            
+
+                    $propiedad->guardar();
+                }
+
+            }
+
+            $router->render('propiedades/actualizar', [
+                'propiedad' => $propiedad,
+                'vendedores' => $vendedores,
+                'errores' => $errores,
+            ]);
+
         }
 
         public static function eliminar() {

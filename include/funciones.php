@@ -63,3 +63,15 @@
 
         return $mensaje;
     }
+
+    function validarORedirrecionar(string $url) {
+        // Validamos que el ID sea un ENTERO
+        $id = $_GET['id'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if (!$id) {
+            header("Location: $url");
+        }
+
+        return $id;
+    }
