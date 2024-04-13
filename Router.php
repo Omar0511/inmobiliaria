@@ -30,7 +30,16 @@
         }
 
         // Muestra una Vista (Views)
-        public function render($view) {
+        public function render($view, $datos = []) {
+            foreach ($datos as $key => $value) {
+                /*
+                    $$
+                    Variable de Variable, es decir; 
+                    Como se van a pasar muchos datos,
+                    NO sabemos que NOMBRE van a tener esas variables.
+                */
+                $$key = $value;
+            }
             // Inicia un almacenamiento en memoria
             ob_start();
 
