@@ -78,7 +78,7 @@
                     <td> <?php echo $vendedor->nombre . " " . $vendedor->apellido; ?> </td>
                     <td> <?php echo $vendedor->telefono; ?> </td>
                     <td>
-                        <form method="POST" class="w-100">
+                        <form action="/vendedores/eliminar" method="POST" class="w-100">
                             <input type="hidden" name="id" id="id" value="<?php echo $vendedor->id; ?>">
                             <input type="hidden" name="tipo" id="tipo" value="vendedor">
 

@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
 
+    use Model\Propiedad;
     use Model\Vendedor;
     use MVC\Router;
 
@@ -57,6 +58,30 @@
         }
 
         public static function eliminar() {
+            if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+                $id = $_POST['id'];
+                $id = filter_var( $id, FILTER_VALIDATE_INT);
+        
+                if ($id) {
+                    $tipo = $_POST['tipo'];
+        
+                    if ( validarTipoContenido($tipo) ) {
+        
+                        if ($tipo === 'vendedor') {
+                            $vendedor = Vendedor::find($id);
+        
+                            $vendedor->eliminar();
+                        } else if ($tipo === 'propiedad') {
+                            $propiedad = Propiedad::find($id);
+        
+                            $propiedad->eliminar();
+                        }
+        
+                    }
+                    
+                }
+                
+            }
 
         }
 
