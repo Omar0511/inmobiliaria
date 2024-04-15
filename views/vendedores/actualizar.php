@@ -11,7 +11,7 @@
         }
     ?>
     
-    <form action="/vendedores/actualizar" class="formulario" method="POST">
+    <form class="formulario" method="POST">
         <?php include 'formulario.php'; ?>
 
         <input type="submit" value="Actualizar Vendedor" class="boton boton-verde-inline-block">

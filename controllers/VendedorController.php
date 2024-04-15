@@ -29,15 +29,14 @@
         }
 
         public static function actualizar(Router $router) {
+            $errores = Vendedor::getErrores();
+            
             // Validamos que el ID sea un ENTERO
             $id = validarORedirrecionar('/admin');
             
             $vendedor = Vendedor::find($id);
 
-            $errores = Vendedor::getErrores();
-
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
                 $args = $_POST['vendedor'];
 
                 $vendedor->sincronizar($args);
