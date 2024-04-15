@@ -30,12 +30,7 @@
 
         public static function actualizar(Router $router) {
             // Validamos que el ID sea un ENTERO
-            $id = $_GET['id'];
-            $id = filter_var($id, FILTER_VALIDATE_INT);
-
-            if (!$id) {
-                header('Location: /admin');
-            }
+            $id = validarORedirrecionar('/admin');
             
             $vendedor = Vendedor::find($id);
 
