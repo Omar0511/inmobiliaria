@@ -29,9 +29,36 @@
         }
 
         public static function actualizar(Router $router) {
+            // Validamos que el ID sea un ENTERO
+            $id = $_GET['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if (!$id) {
+                header('Location: /admin');
+            }
+            
+            $vendedor = Vendedor::find($id);
+
+            $errores = Vendedor::getErrores();
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                $args = $_POST['vendedor'];
+
+                $vendedor->sincronizar($args);
+                
+                $errores = $vendedor->validar();
+
+                // Revisar que el array de $errores este vacío
+                if ( empty($errores) ) {
+                    $vendedor->guardar();
+                }
+
+            }
 
             $router->render('vendedores/actualizar', [
-
+                'vendedor' => $vendedor,
+                'errores' => $errores,
             ]);
         }
 
