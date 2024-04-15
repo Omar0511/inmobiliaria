@@ -28,7 +28,7 @@
     incluirTemplates('header');
 ?>
 
-<main class="contenedor seccion">
+    <main class="contenedor seccion">
         <h1>Crear Vendedor</h1>
 
         <a href="/admin" class="boton boton-verde-inline-block">Volver</a>

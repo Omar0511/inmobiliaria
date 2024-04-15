@@ -17,11 +17,11 @@
     $router->post('/propiedades/eliminar', [PropiedadController::class, 'eliminar']);
 
     // Vendedores
-    $router->get('/vendores/crear', [VendedorController::class, 'crear']);
-    $router->post('/vendores/crear', [VendedorController::class, 'crear']);
-    $router->get('/vendores/actualizar', [VendedorController::class, 'actualizar']);
-    $router->post('/vendores/actualizar', [VendedorController::class, 'actualizar']);
-    $router->post('/vendores/eliminar', [VendedorController::class, 'eliminar']);
+    $router->get('/vendedores/crear', [VendedorController::class, 'crear']);
+    $router->post('/vendedores/crear', [VendedorController::class, 'crear']);
+    $router->get('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
+    $router->post('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
+    $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
 
     $router->comprobarRutas();
     
