@@ -2,8 +2,8 @@
 
     require __DIR__ . '/../include/app.php';
 
-use controllers\PaginasController;
-use MVC\Router;
+    use MVC\Router;
+    use Controllers\PaginasController;
     use Controllers\PropiedadController;
     use Controllers\VendedorController;
 
