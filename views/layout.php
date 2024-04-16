@@ -22,7 +22,7 @@
     <header class="header <?php echo $inicio ? 'inicio' : ''; ?> ">
         <div class="contenedor contenido-header">
             <div class="barra">
-                <a href="/index.php">
+                <a href="/index">
                     <img src="/build/img/logo.svg" alt="Logotipo Bienes Raíces">
                 </a>
 
@@ -41,10 +41,10 @@
                         <?php 
                             }
                         ?>                        
-                        <a href="nosotros.php">Nostros</a>
-                        <a href="anuncios.php">Anuncios</a>
-                        <a href="blog.php">Blog</a>
-                        <a href="contacto.php">Contacto</a>
+                        <a href="/nosotros">Nostros</a>
+                        <a href="/|anuncios">Anuncios</a>
+                        <a href="/blog">Blog</a>
+                        <a href="/contacto">Contacto</a>
                         <?php
                             if ($auth) {
                         ?>
