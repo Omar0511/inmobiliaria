@@ -2,8 +2,8 @@
 
     require __DIR__ . '/../include/app.php';
 
-    use MVC\Router;
     use Controllers\PaginasController;
+    use MVC\Router;
     use Controllers\PropiedadController;
     use Controllers\VendedorController;
 
@@ -25,6 +25,7 @@
     $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
 
     // Páginas
+    $router->get('/', [PaginasController::class, 'index']);
 
     $router->comprobarRutas();
     
