@@ -16,6 +16,7 @@
         }
     ],
     "require": {
-        "intervention/image": "2"
+        "intervention/image": "2",
+        "phpmailer/phpmailer": "^6.9"
     }
 }

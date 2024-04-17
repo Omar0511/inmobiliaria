@@ -40,6 +40,9 @@
         - _PHP NAMESPACE RESOLVER_
         - Te autocompleta cuando manda llamar las Clases o Instancias de las mismas
             - Ejemplo: **use App\Propiedad;**
+- MAILTRAP
+- PHPMailer
+    - **_composer require phpmailer/phpmailer_**
 
 ### Descripción
 
