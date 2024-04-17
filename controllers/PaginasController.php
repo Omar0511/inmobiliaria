@@ -54,6 +54,11 @@
         }
 
         public static function contacto(Router $router) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $respuestas = $_POST['contacto'];
+                debuguear($respuestas);
+            }
+
             $router->render('paginas/contacto', [
 
             ]);
