@@ -11,7 +11,7 @@
     <?php include 'listado.php'; ?>
 
     <div class="alinear-derecha">
-        <a href="anuncios.php" class="boton-verde">Ver Todas</a>
+        <a href="/propiedades" class="boton-verde-block">Ver Todas</a>
     </div>
 </section>
 

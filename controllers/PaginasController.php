@@ -31,8 +31,13 @@
         }
 
         public static function propiedad(Router $router) {
-            $router->render('paginas/propiedad', [
+            $id = validarORedirrecionar('/propiedades');
 
+            // Buscar la propiedad por su ID
+            $propiedad = Propiedad::find($id);
+
+            $router->render('paginas/propiedad', [
+                'propiedad' => $propiedad,
             ]);
         }
 
