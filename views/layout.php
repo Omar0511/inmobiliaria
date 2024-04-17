@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="derecha">
-                    <img class="dark-mode-boton" src="/build/img//dark-mode.svg" alt="Icono Dark Mode">
+                    <img class="dark-mode-boton" src="/build/img/dark-mode.svg" alt="Icono Dark Mode">
 
                     <nav class="navegacion">
                         <?php
