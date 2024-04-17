@@ -41,8 +41,23 @@
         - Te autocompleta cuando manda llamar las Clases o Instancias de las mismas
             - Ejemplo: **use App\Propiedad;**
 - MAILTRAP
+    - Debemos crear una cuenta, dentro del correo de prueba encontraremos: _Integrations_, seleccionamos el LENGUAJE, en este caso se utilizó: Lavarel 7.x amd 8.x, te da una configuración:
+    ```
+        MAIL_MAILER=smtp
+        MAIL_HOST=sandbox.smtp.mailtrap.io
+        MAIL_PORT=2525
+        MAIL_USERNAME=youruser
+        MAIL_PASSWORD=yourpassword
+        MAIL_ENCRYPTION=tls
+    ```
 - PHPMailer
-    - **_composer require phpmailer/phpmailer_**
+    - Instalación:
+        - **_composer require phpmailer/phpmailer_**
+    - Configuración: **https://github.com/PHPMailer/PHPMailer**
+        ```
+
+        ```
+
 
 ### Descripción
 
