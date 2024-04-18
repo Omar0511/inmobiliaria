@@ -40,10 +40,10 @@
         public function existeUsuario() {
             // Revisar si existe el USUARIO
             $query = "SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
-
+            
             $resultado = self::$db->query($query);
-
-            if (!$resultado->nums_row) {
+            
+            if (!$resultado->num_rows) {
                 self::$errores[] = 'El Usuario no existe!';
                 
                 return;
@@ -53,6 +53,7 @@
         }
 
         public function comprobarPassword($resultado) {
+            // fetch_object = trae lo que encontró en la BD
             $usuario = $resultado->fetch_object();
 
             $autenticado = password_verify($this->password, $usuario->password);
@@ -62,6 +63,16 @@
             }
 
             return $autenticado;
+        }
+
+        public function autenticar() {
+            session_start();
+
+            // Llenar el arreglo de sesión
+            $_SESSION['usuario'] = $this->email;
+            $_SESSION['login'] = true;
+
+            header('Location: /admin');
         }
 
     }

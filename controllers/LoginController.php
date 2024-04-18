@@ -26,7 +26,7 @@
 
                         if ($autenticado) {
                             // Autenticar al usuario
-
+                            $auth->autenticar();
                         } else {
                             // Password incorrecto
                             $errores = Admin::getErrores();
