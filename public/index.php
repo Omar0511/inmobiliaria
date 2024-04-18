@@ -2,6 +2,7 @@
 
     require __DIR__ . '/../include/app.php';
 
+    use Controllers\LoginController;
     use Controllers\PaginasController;
     use MVC\Router;
     use Controllers\PropiedadController;
@@ -34,6 +35,11 @@
     $router->get('/entrada', [PaginasController::class, 'entrada']);
     $router->get('/contacto', [PaginasController::class, 'contacto']);
     $router->post('/contacto', [PaginasController::class, 'contacto']);
+
+    // Login y Autenticación
+    $router->get('/login', [LoginController::class, 'login']);
+    $router->get('/logout', [LoginController::class, 'logout']);
+    $router->post('/logout', [LoginController::class, 'logout']);
 
     $router->comprobarRutas();
     

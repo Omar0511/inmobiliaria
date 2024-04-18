@@ -37,7 +37,7 @@
                         <?php
                             if (!$auth) {
                         ?>
-                                <a href="/login.php">Iniciar Sesión</a>
+                                <a href="/login">Iniciar Sesión</a>
                         <?php 
                             }
                         ?>                        
