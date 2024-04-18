@@ -48,7 +48,7 @@
                         <?php
                             if ($auth) {
                         ?>
-                                <a href="/cerrar-sesion.php">Cerrar Sesión</a>
+                                <a href="/logout">Cerrar Sesión</a>
                         <?php 
                             }
                         ?>
