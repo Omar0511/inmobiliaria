@@ -23,4 +23,16 @@
             $this->password = $args['password'] ?? '';
         }
 
+        public function validar() {
+            if (!$this->email) {
+                self::$errores[] = "El E-mail es obligatorio";
+            }
+    
+            if (!$this->password) {
+                self::$errores[] = "El Password es obligatorio";
+            }
+
+            return self::$errores;
+        }
+
     }
