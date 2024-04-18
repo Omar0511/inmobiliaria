@@ -162,3 +162,14 @@
     ```
 - Volvemos a ejecutar:
     - **_composer update_**
+
+#### TESTING
+
+- End To End
+    - Se comporta como usuario, da clics y llena formularios
+- Integración
+    - Revisar que varias partes de la aplicación funcionan bien juntas
+- Unitarias
+    - Que una parte por si sola funciona bien
+- Static
+    - Identificar errores mientras los vas escribiendo
