@@ -1,4 +1,6 @@
 <?php
+    // Aquí tenemos solo lo que contiene la Base de Datos
+
     namespace Model;
 
     use Model\ActiveRecord;
@@ -48,6 +50,18 @@
             }
 
             return $resultado;
+        }
+
+        public function comprobarPassword($resultado) {
+            $usuario = $resultado->fetch_object();
+
+            $autenticado = password_verify($this->password, $usuario->password);
+
+            if (!$autenticado) {
+                self::$errores[] = 'El Password es incorrecto!!!';
+            }
+
+            return $autenticado;
         }
 
     }

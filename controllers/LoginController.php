@@ -22,8 +22,16 @@
                         $errores = Admin::getErrores();
                     } else {
                         // Verificar el password
+                        $autenticado = $auth->comprobarPassword($resultado);
 
-                        // Autenticar al usuario
+                        if ($autenticado) {
+                            // Autenticar al usuario
+
+                        } else {
+                            // Password incorrecto
+                            $errores = Admin::getErrores();
+                        }
+
                     }
                     
                 }
